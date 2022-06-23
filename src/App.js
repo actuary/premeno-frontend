@@ -1,16 +1,19 @@
+import { useState } from "react"
 import {
   BrowserRouter as Router,
   Routes, Route, Link
 } from "react-router-dom"
 
 import Home from "./components/Home"
-import PersonalDetailsForm from "./components/PersonalDetailsForm"
+import PersonalDetails from "./components/PersonalDetails"
 import MhtResults from "./components/MhtResults"
 
 function App() {
   const padding = {
     padding: 5
   }
+
+  const [formValues, setFormValues] = useState({})
 
   return (
     <Router>
@@ -21,8 +24,8 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/questionaire" element={<PersonalDetailsForm />} />
-        <Route path="/results" element={<MhtResults />} />
+        <Route path="/questionaire" element={<PersonalDetails setValues={setFormValues}/>} />
+        <Route path="/results" element={<MhtResults values={formValues}/>} />
       </Routes>
       <div>
         <i>PreMeno: The MHT Risk Assessment Tool</i>

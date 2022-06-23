@@ -1,38 +1,7 @@
 import { useState } from "react"
-import {
-  Button, 
-  FormControl, 
-  Select, 
-  InputLabel, 
-  MenuItem,
-  Paper,
-  Container
-} from "@mui/material"
+import Questionnaire from "./forms/Questionnaire"
 
-const DetailInput = ({ info, handleChange}) => {
-  const [choice, setChoice] = useState(info.value)
-
-  const handleInputChange = (event) => {
-    handleChange(event)
-    setChoice(event.target.value)
-  }
-
-  return (
-    <FormControl fullWidth margin="normal">
-      <InputLabel id={info.name}>{info.label}</InputLabel>
-      <Select
-        labelId={info.name}
-        name={info.name}
-        value={choice}
-        onChange={handleInputChange}
-        label={info.label}
-      >
-        {info.choices.map(c => 
-          <MenuItem key={c.label} value={c.value}>{c.label}</MenuItem>)}
-      </Select>
-    </FormControl>
-  )
-}
+import { Container } from "@mui/material"
 
 const defaultValues = {
   mht: {  
@@ -183,48 +152,13 @@ const defaultValues = {
   },
 }
 
-const PersonalDetailsForm = () => {
+const PersonalDetails = () => {
   const [formValues, setFormValues] = useState(defaultValues)
-
-  const submitDetails = (event) => {
-    event.preventDefault()
-    console.log(formValues)
-  }
-
-  const handleChange = (e) => {
-    console.log(e.target)
-    const { name, value } = e.target
-    setFormValues({
-      ...formValues,
-      [name]: {...formValues[name], value: value}
-    })
-  }
-
   return (
     <Container maxWidth="sm">
-      <Paper>
-        <form onSubmit={submitDetails}>
-          <DetailInput info={formValues.mht} handleChange={handleChange}/>
-          <DetailInput info={formValues.age} handleChange={handleChange}/>
-          <DetailInput info={formValues.biopsy} handleChange={handleChange}/>
-          {["1", "2+"].includes(formValues.biopsy.value) && 
-              (<DetailInput info={formValues.hyperplasia} handleChange={handleChange}/>)
-          }
-          <DetailInput info={formValues.age_at_first_child} handleChange={handleChange}/>
-          <DetailInput info={formValues.age_at_menarche} handleChange={handleChange}/>
-          <DetailInput info={formValues.age_at_diagnosis} handleChange={handleChange}/>
-          <DetailInput info={formValues.bmi} handleChange={handleChange}/>
-          <DetailInput info={formValues.family_history} handleChange={handleChange}/>
-          <DetailInput info={formValues.ethnic_group} handleChange={handleChange}/>
-          <DetailInput info={formValues.education} handleChange={handleChange}/>
-          <DetailInput info={formValues.alcohol} handleChange={handleChange}/>
-          <DetailInput info={formValues.smoking} handleChange={handleChange}/>
-          <Button variant="contained" type="submit">Submit</Button>
-        </form>
-      </Paper>
+      <Questionnaire formValues={formValues} setFormValues={setFormValues} />
     </Container>
   )
-
 }
 
-export default PersonalDetailsForm
+export default PersonalDetails
