@@ -4,6 +4,56 @@ import Questionnaire from "./forms/Questionnaire"
 import { Container } from "@mui/material"
 
 const defaultValues = {
+  date_of_birth: {  
+    name: "date_of_birth",
+    value: new Date(1970, 1, 1),
+    label: "What is your date of birth?",
+  },
+  height: {  
+    name: "height",
+    value: 160,
+    label: "What your height in cm?",
+  },
+  weight: {  
+    name: "weight",
+    value: 160,
+    label: "What your weight in kg?",
+  },
+  ethnic_group: {  
+    name: "ethnic_group",
+    value: "",
+    label: "What is your ethnicity?",
+    choices: [
+      {value: "white", label: "White"},
+      {value: "other", label: "Other"}
+    ]
+  },
+  education: {  
+    name: "education",
+    value: "",
+    label: "What is your highest level of educational achievment?",
+    choices: [
+      {value: "primary", label: "Primary school"},
+      {value: "secondary", label: "Secondary school"},
+      {value: "college", label: "College/A-levels"},
+      {value: "uni", label: "University"}
+    ]
+  },
+  smoking: {  
+    name: "smoking",
+    value: "",
+    label: "Are you a smoker, or have you smoked in the past?",
+    choices: [
+      {value: "never", label: "Never smoked"},
+      {value: "past", label: "Past smoker"},
+      {value: "current", label: "Current smoker"},
+    ]
+  },
+  alcohol: {  
+    name: "alcohol",
+    value: 0,
+    label: "How many standard units of alcohol do you consume a week on average?",
+  },
   mht: {  
     name: "mht",
     value: "",
@@ -11,38 +61,6 @@ const defaultValues = {
     choices: [
       {value: "e+p", label: "Oestrogen-progesterone"},
       {value: "e", label: "Oestrogen only"}
-    ]
-  },
-  age: {  
-    name: "age",
-    value: "",
-    label: "What age bracket are you in?",
-    choices: [
-      {value: "45_49", label: "45-49 years"},
-      {value: "50_54", label: "50-54 years"},
-      {value: "55_59", label: "55-59 years"},
-      {value: "60_64", label: "60-64 years"},
-      {value: "65_90", label: "65+ years"}
-    ]
-  },
-  biopsy: {  
-    name: "biopsy",
-    value: "",
-    label: "Have you had a breast biopsy?",
-    choices: [
-      {value: "0", label: "None"},
-      {value: "1", label: "1"},
-      {value: "2+", label: "2 or more"},
-    ]
-  },
-  hyperplasia: {  
-    name: "hyperplasia",
-    value: "",
-    label: "Have you had a biopsy with atypical hyperplasia?",
-    choices: [
-      {value: "0", label: "No"},
-      {value: "1", label: "Yes"},
-      {value: "NA", label: "N/A"},
     ]
   },
   age_at_first_child: {  
@@ -60,67 +78,16 @@ const defaultValues = {
   age_at_menarche: {  
     name: "age_at_menarche",
     value: "",
-    label: "What age did you have your first period?",
-    choices: [
-      {value: "0_13", label: "<13 years"},
-      {value: "14+", label: "13+ years"},
-    ]
+    label: "What age (years) did you have your first period?",
   },
-  age_at_diagnosis: {  
-    name: "age_at_diagnosis",
+  time_since_last_period: {  
+    name: "time_since_last_period",
     value: "",
-    label: "What age were you when diagnosed with menopause?",
+    label: "How long has it been since your last period",
     choices: [
       {value: "0_55", label: "<55 years"},
       {value: "55_65", label: "55-65 years"},
       {value: "NA", label: "I am not yet menopausal"},
-    ]
-  },
-  bmi: {  
-    name: "bmi",
-    value: "",
-    label: "What is your BMI?",
-    choices: [
-      {value: "0_25", label: "<25 kg/m2"},
-      {value: "25_29", label: "25-29 kg/m2"},
-      {value: "30+", label: ">30 kg/m2"},
-    ]
-  },
-  height: {  
-    name: "height",
-    value: "",
-    label: "What is your height in centimetres?",
-    choices: [
-      {value: "0_165", label: "<165 cm"},
-      {value: "165+", label: "165+ cm"}
-    ]
-  },
-  family_history: {  
-    name: "family_history",
-    value: "",
-    label: "How many of your close relatives have been diagnosed with breast cancer?",
-    choices: [
-      {value: "0", label: "None"},
-      {value: "1", label: "1"},
-      {value: "2+", label: "2 or more"},
-    ]
-  },
-  ethnic_group: {  
-    name: "ethnic_group",
-    value: "",
-    label: "What is your ethnicity?",
-    choices: [
-      {value: "white", label: "White"},
-      {value: "other", label: "Other"}
-    ]
-  },
-  education: {  
-    name: "education",
-    value: "",
-    label: "education",
-    choices: [
-      {value: "0_12", label: "<13 years"},
-      {value: "13+", label: "13+ years"}
     ]
   },
   oral_contra: {  
@@ -132,22 +99,42 @@ const defaultValues = {
       {value: "y", label: "Used at least once"}
     ]
   },
-  alcohol: {  
-    name: "alcohol",
+  hysterectomy: {  
+    name: "hysterectomy",
     value: "",
-    label: "alcohol",
+    label: "Have you had a hysterectomy",
     choices: [
-      {value: "0_10", label: "10+ grams a week"},
-      {value: "10+", label: "<10 grams a week"}
+      {value: "n", label: "No"},
+      {value: "y", label: "Yes"}
     ]
   },
-  smoking: {  
-    name: "smoking",
+  family_history: {  
+    name: "family_history",
     value: "",
-    label: "smoking",
+    label: "How many of your close relatives have been diagnosed with breast cancer?",
+  },
+  biopsy: {  
+    name: "biopsy",
+    value: "",
+    label: "Have you had a breast biopsy?",
     choices: [
-      {value: "n", label: "Never smoked"},
-      {value: "y", label: "Have smoked"},
+      {value: "n", label: "No"},
+      {value: "y", label: "Yes"}
+    ]
+  },
+  number_of_biopsies: {  
+    name: "number_of_biopsies",
+    value: "",
+    label: "How many breast biopsies have you had?",
+  },
+  hyperplasia: {  
+    name: "hyperplasia",
+    value: "",
+    label: "Have you had a biopsy with atypical hyperplasia?",
+    choices: [
+      {value: "0", label: "No"},
+      {value: "1", label: "Yes"},
+      {value: "NA", label: "N/A"},
     ]
   },
 }
