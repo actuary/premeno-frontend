@@ -7,7 +7,7 @@ import {
   StepLabel,
   Button,
   ThemeProvider, createTheme,
-  Stack
+  Stack, Box
 } from "@mui/material"
 import { teal } from "@mui/material/colors"
 
@@ -30,7 +30,7 @@ const theme = createTheme({
 const PersonalDetailsForm = ({ formValues, setFormValues}) => {
   const [step, setStep] = useState(0)
 
-  const stepNames = ["About", "Reproductive health", "Breast cancer risk"]
+  const stepNames = ["About you", "Reproductive health", "Breast cancer risk"]
   const nextStep = () => {
     setStep(step + 1)
   }
@@ -39,11 +39,13 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
     setStep(step - 1)
   }
 
+  /*
   const extractFormValues = (formValues) => {
     const values = {}
     Object.keys(formValues).forEach(key => values[key] = formValues[key].value)
     return values
   }
+  */
 
   const handleFormChange = input => (e) => {
     const {value} = e.target
@@ -53,7 +55,7 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
       [input]: {...prevState[input], value: value}
     }))
     
-    localStorage.setItem("formValues", JSON.stringify(extractFormValues(formValues)))
+    localStorage.setItem("formValues", JSON.stringify(formValues))
   }
 
   const questionInputs = {
@@ -140,21 +142,21 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
         name="biopsy"
         handleFormChange={handleFormChange}
       />,
-      (formValues.biopsy.value === "n" ? <div key="number_of_biopsies"></div> :
+      (formValues.biopsy.value === "y" ? 
         <NumberAnswer 
           key="number_of_biopsies"
           values={formValues}
           name="number_of_biopsies"
           handleFormChange={handleFormChange}
-        />
+        /> : <div key="number_of_biopsies"></div>
       ),
-      (formValues.biopsy.value === "n" ? <div key="hyperplasia"></div> :
-        <NumberAnswer 
+      (formValues.biopsy.value === "y" ? 
+        <SelectAnswer
           key="hyperplasia"
           values={formValues}
           name="hyperplasia"
           handleFormChange={handleFormChange}
-        />
+        /> : <div key="hyperplasia"></div>
       ),
       <NumberAnswer 
         key="family_history"
@@ -198,11 +200,11 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper>
-        <Typography component="h1" variant="h4" align="center">
+      <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
+        <Typography component="h1" variant="h4" align="center" color="teal">
           MHT Risk Questionnaire
         </Typography>
-        <Stepper activeStep={step}>
+        <Stepper activeStep={step} style={{marginTop: "10px", marginBottom: "10px"}}>
           {stepNames.map(name => (
             <Step key={name}>
               <StepLabel>{name}</StepLabel>
@@ -216,7 +218,7 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
                 <Typography variant="h5">
                   Thank you for completing the questionnaire.
                 </Typography>
-                <Button variant="contained" color="primary">
+                <Button href="/results" variant="contained" color="primary">
                   View results
                 </Button>
                 <Button onClick={prevStep}>
@@ -227,7 +229,7 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
           ) : (
             <>
               {getQuestionSet(step)}
-              <div>
+              <Box display="flex" justifyContent="flex-end" alignItems="flex-end">
                 {step !== 0 && (
                   <Button onClick={prevStep}>
                     Back
@@ -240,7 +242,7 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
                 >
                   {step === stepNames.length - 1 ? "Submit" : "Next"}
                 </Button>
-              </div>
+              </Box>
             </>
           )}
         </>

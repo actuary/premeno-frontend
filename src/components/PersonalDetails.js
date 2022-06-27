@@ -6,21 +6,25 @@ import { Container } from "@mui/material"
 const defaultValues = {
   date_of_birth: {  
     name: "date_of_birth",
+    inputLabel: "DOB",
     value: new Date(1970, 1, 1),
     label: "What is your date of birth?",
   },
   height: {  
     name: "height",
-    value: 160,
+    inputLabel: "Height",
+    value: "",
     label: "What your height in cm?",
   },
   weight: {  
     name: "weight",
-    value: 160,
+    inputLabel: "Weight",
+    value: "",
     label: "What your weight in kg?",
   },
   ethnic_group: {  
     name: "ethnic_group",
+    inputLabel: "Ethnicity",
     value: "",
     label: "What is your ethnicity?",
     choices: [
@@ -30,6 +34,7 @@ const defaultValues = {
   },
   education: {  
     name: "education",
+    inputLabel: "Education level",
     value: "",
     label: "What is your highest level of educational achievment?",
     choices: [
@@ -41,6 +46,7 @@ const defaultValues = {
   },
   smoking: {  
     name: "smoking",
+    inputLabel: "Smoking status",
     value: "",
     label: "Are you a smoker, or have you smoked in the past?",
     choices: [
@@ -51,11 +57,13 @@ const defaultValues = {
   },
   alcohol: {  
     name: "alcohol",
-    value: 0,
+    inputLabel: "Units per week",
+    value: "",
     label: "How many standard units of alcohol do you consume a week on average?",
   },
   mht: {  
     name: "mht",
+    inputLabel: "MHT formulation",
     value: "",
     label: "What MHT formulation will you be taking?",
     choices: [
@@ -65,6 +73,7 @@ const defaultValues = {
   },
   age_at_first_child: {  
     name: "age_at_first_child",
+    inputLabel: "Age at 1st child",
     value: "",
     label: "What age did you have your first child?",
     choices: [
@@ -77,13 +86,15 @@ const defaultValues = {
   },
   age_at_menarche: {  
     name: "age_at_menarche",
+    inputLabel: "Age at menarche",
     value: "",
     label: "What age (years) did you have your first period?",
   },
   time_since_last_period: {  
     name: "time_since_last_period",
+    inputLabel: "Months",
     value: "",
-    label: "How long has it been since your last period",
+    label: "How long (months) has it been since your last period",
     choices: [
       {value: "0_55", label: "<55 years"},
       {value: "55_65", label: "55-65 years"},
@@ -92,6 +103,7 @@ const defaultValues = {
   },
   oral_contra: {  
     name: "oral_contra",
+    inputLabel: "Oral contraception",
     value: "",
     label: "Have you ever used oral contraception?",
     choices: [
@@ -101,6 +113,7 @@ const defaultValues = {
   },
   hysterectomy: {  
     name: "hysterectomy",
+    inputLabel: "Hysterectomy",
     value: "",
     label: "Have you had a hysterectomy",
     choices: [
@@ -110,11 +123,13 @@ const defaultValues = {
   },
   family_history: {  
     name: "family_history",
+    inputLabel: "Number of close relatives",
     value: "",
     label: "How many of your close relatives have been diagnosed with breast cancer?",
   },
   biopsy: {  
     name: "biopsy",
+    inputLabel: "Breast biopsy",
     value: "",
     label: "Have you had a breast biopsy?",
     choices: [
@@ -124,17 +139,18 @@ const defaultValues = {
   },
   number_of_biopsies: {  
     name: "number_of_biopsies",
+    inputLabel: "Number of biopsies",
     value: "",
     label: "How many breast biopsies have you had?",
   },
   hyperplasia: {  
     name: "hyperplasia",
+    inputLabel: "Hyperplasia",
     value: "",
     label: "Have you had a biopsy with atypical hyperplasia?",
     choices: [
       {value: "0", label: "No"},
-      {value: "1", label: "Yes"},
-      {value: "NA", label: "N/A"},
+      {value: "1", label: "Yes"}
     ]
   },
 }
@@ -142,7 +158,7 @@ const defaultValues = {
 const PersonalDetails = () => {
   const [formValues, setFormValues] = useState(defaultValues)
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <Questionnaire formValues={formValues} setFormValues={setFormValues} />
     </Container>
   )

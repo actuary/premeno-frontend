@@ -10,7 +10,7 @@ const QuestionSet = ({ nextStep, formControls}) => {
 
   return (
     <form onSubmit={submitFormData}>
-      <Stack justifyContent="space-between" spacing={4}>
+      <Stack justifyContent="space-between" spacing={2}>
         {formControls.map( (control) => control)}
       </Stack>
     </form>
