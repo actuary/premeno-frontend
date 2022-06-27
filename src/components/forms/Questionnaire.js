@@ -1,18 +1,48 @@
 import { useState } from "react"
+import {
+  Typography,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Button,
+  ThemeProvider, createTheme,
+  Stack
+} from "@mui/material"
+import { teal } from "@mui/material/colors"
+
 import QuestionSet from "./QuestionSet"
 import SelectAnswer from "./SelectAnswer"
 import DateAnswer from "./DateAnswer"
 import NumberAnswer from "./NumberAnswer"
 
-const PersonalDetailsForm = ({ formValues, setFormValues}) => {
-  const [step, setStep] = useState(1)
+const theme = createTheme({
+  status: {
+    danger: "#e53e3e",
+  },
+  palette: {
+    primary: {
+      main: teal[500],
+    }
+  },
+})
 
+const PersonalDetailsForm = ({ formValues, setFormValues}) => {
+  const [step, setStep] = useState(0)
+
+  const stepNames = ["About", "Reproductive health", "Breast cancer risk"]
   const nextStep = () => {
     setStep(step + 1)
   }
 
   const prevStep = () => {
     setStep(step - 1)
+  }
+
+  const extractFormValues = (formValues) => {
+    const values = {}
+    Object.keys(formValues).forEach(key => values[key] = formValues[key].value)
+    return values
   }
 
   const handleFormChange = input => (e) => {
@@ -22,6 +52,8 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
       ...prevState,
       [input]: {...prevState[input], value: value}
     }))
+    
+    localStorage.setItem("formValues", JSON.stringify(extractFormValues(formValues)))
   }
 
   const questionInputs = {
@@ -108,7 +140,7 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
         name="biopsy"
         handleFormChange={handleFormChange}
       />,
-      (formValues.biopsy.value === "n" ? <div></div> :
+      (formValues.biopsy.value === "n" ? <div key="number_of_biopsies"></div> :
         <NumberAnswer 
           key="number_of_biopsies"
           values={formValues}
@@ -116,7 +148,7 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
           handleFormChange={handleFormChange}
         />
       ),
-      (formValues.biopsy.value === "n" ? <div></div> :
+      (formValues.biopsy.value === "n" ? <div key="hyperplasia"></div> :
         <NumberAnswer 
           key="hyperplasia"
           values={formValues}
@@ -133,36 +165,88 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
     ]
   }
 
-  switch (step) {
-  case 1: 
-    return (
-      <QuestionSet 
-        nextStep={nextStep} 
-        title="About you"
-        formControls = {questionInputs.about}
-      />
-    )
-  case 2:
-    return (
-      <QuestionSet 
-        prevStep={prevStep}
-        nextStep={nextStep} 
-        title="Reproductive health"
-        formControls = {questionInputs.menopause}
-      />
-    )
-  case 3:
-    return (
-      <QuestionSet 
-        prevStep={prevStep}
-        nextStep={nextStep} 
-        title="Background breast cancer risk"
-        formControls = {questionInputs.cancer}
-      />
-    )
-  default:
-    console.log("Finished.")
+  const getQuestionSet = () => {
+    switch (step) {
+    case 0: 
+      return (
+        <QuestionSet 
+          nextStep={nextStep} 
+          title={stepNames[step]}
+          formControls = {questionInputs.about}
+        />
+      )
+    case 1:
+      return (
+        <QuestionSet 
+          nextStep={nextStep} 
+          title={stepNames[step]}
+          formControls = {questionInputs.menopause}
+        />
+      )
+    case 2:
+      return (
+        <QuestionSet 
+          nextStep={nextStep} 
+          title={stepNames[step]}
+          formControls = {questionInputs.cancer}
+        />
+      )
+    default: 
+      return ( <div>Submitted</div> )
+    }
   }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Paper>
+        <Typography component="h1" variant="h4" align="center">
+          MHT Risk Questionnaire
+        </Typography>
+        <Stepper activeStep={step}>
+          {stepNames.map(name => (
+            <Step key={name}>
+              <StepLabel>{name}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <>
+          {step === stepNames.length ? (
+            <>
+              <Stack justify="center" spacing={2}>
+                <Typography variant="h5">
+                  Thank you for completing the questionnaire.
+                </Typography>
+                <Button variant="contained" color="primary">
+                  View results
+                </Button>
+                <Button onClick={prevStep}>
+                  Back
+                </Button>
+              </Stack>
+            </>
+          ) : (
+            <>
+              {getQuestionSet(step)}
+              <div>
+                {step !== 0 && (
+                  <Button onClick={prevStep}>
+                    Back
+                  </Button>
+                )}
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={nextStep}
+                >
+                  {step === stepNames.length - 1 ? "Submit" : "Next"}
+                </Button>
+              </div>
+            </>
+          )}
+        </>
+      </Paper>
+    </ThemeProvider>
+  )
 }
 
 export default PersonalDetailsForm

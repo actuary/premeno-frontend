@@ -1,30 +1,30 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   BrowserRouter as Router,
-  Routes, Route, Link
+  Routes, Route
 } from "react-router-dom"
 
+import Navbar from "./Navbar"
 import Home from "./components/Home"
 import PersonalDetails from "./components/PersonalDetails"
 import MhtResults from "./components/MhtResults"
 
-function App() {
-  const padding = {
-    padding: 5
-  }
-
+const App = () => {
   const [formValues, setFormValues] = useState({})
+  
+  useEffect(() => {
+    localStorage.setItem("formValues", JSON.stringify(formValues))
+  }, [formValues])
 
   return (
     <Router>
       <div>
-        <Link style={padding} to="/">Home</Link>
-        <Link style={padding} to="/questionaire">Questionaire</Link>
-        <Link style={padding} to="/results">Results</Link>
+        <Navbar />
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/questionaire" element={<PersonalDetails setValues={setFormValues}/>} />
+        <Route path="/About" element={<Home />} />
+        <Route path="/questionnaire" element={<PersonalDetails setValues={setFormValues}/>} />
         <Route path="/results" element={<MhtResults values={formValues}/>} />
       </Routes>
       <div>
