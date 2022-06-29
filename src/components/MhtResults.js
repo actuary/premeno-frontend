@@ -1,5 +1,8 @@
+import axios from "axios"
+import { useState, useEffect } from "react"
+
 import {
-  Paper, 
+  Paper,
   Container,
   Typography,
   Grid, Box,
@@ -10,7 +13,6 @@ import {
 } from "@mui/material"
 
 import { teal } from "@mui/material/colors"
-
 import { Woman } from "@mui/icons-material"
 
 const theme = createTheme({
@@ -25,9 +27,47 @@ const theme = createTheme({
 })
 
 const MhtResults = () => {
-  const baselineRisk = 0.102
-  const relativeRisk = 2.0
-  const riskWithMHT = Math.min(relativeRisk * baselineRisk, 1)
+  const [risk, setRisk] = useState({})
+
+  useEffect(() => {
+    const data = {
+      "username": process.env.REACT_APP_API_USER,
+      "password": process.env.REACT_APP_API_PSWD
+    }
+
+    axios
+      .post("/auth-token/", data).then(response => {
+        const headers = { headers: {"Authorization": "Token " + response.data.token}}
+        return axios.get("/api/risk", headers)
+      })
+      .then(response => {
+        setRisk(response.data)
+        console.log(response.data)
+      })
+      .catch(error => {
+        setRisk({})
+        console.log(error.response)
+      })
+  }, [])
+
+  if (Object.keys(risk).length === 0) {
+    return (
+      <ThemeProvider theme={theme}>
+        <Container>
+          <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
+            <Typography
+              component="p"
+              color="primary"
+            >
+              No results available.
+            </Typography>
+          </Paper>
+        </Container>
+      </ThemeProvider>
+    )
+  }
+
+  const riskWithMHT = Math.min(risk.relative_risk * risk.baseline_risk, 1)
   const values = JSON.parse(localStorage.getItem("formValues"))
   return (
     <ThemeProvider theme={theme}>
@@ -38,7 +78,7 @@ const MhtResults = () => {
             color="primary"
           >
             <strong>Background risk:</strong> This shows the estimated chance of
-            being diagnosed with breast cancer over the next 10 years, without the 
+            being diagnosed with breast cancer over the next 10 years, without the
             use of MHT.
           </Typography>
           <Typography
@@ -62,7 +102,7 @@ const MhtResults = () => {
             color="primary"
           >
             <strong>Please note</strong> that these estimates are only a guide and should
-            be discussed with your doctor. 
+            be discussed with your doctor.
           </Typography>
         </Paper>
         <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
@@ -75,14 +115,14 @@ const MhtResults = () => {
                     component="p"
                     color="primary"
                   >
-                    Background risk
+                    10 year background risk
                   </Typography>
                   <Typography
                     variant="h3"
                     component="p"
                     color="primary"
                   >
-                    {baselineRisk * 100}%
+                    {(risk.baseline_risk * 100).toFixed(1)}%
                   </Typography>
                 </CardContent>
               </Grid>
@@ -100,7 +140,7 @@ const MhtResults = () => {
                     component="p"
                     color="primary"
                   >
-                    {relativeRisk}x
+                    {risk.relative_risk.toFixed(1)}x
                   </Typography>
                 </CardContent>
               </Grid>
@@ -111,14 +151,14 @@ const MhtResults = () => {
                     component="p"
                     color="primary"
                   >
-                    Absolute risk with MHT use
+                    10 year risk with MHT use
                   </Typography>
                   <Typography
                     variant="h3"
                     component="p"
                     color="primary"
                   >
-                    {riskWithMHT*100}%
+                    {(riskWithMHT*100).toFixed(1)}%
                   </Typography>
                 </CardContent>
               </Grid>
@@ -138,10 +178,10 @@ const MhtResults = () => {
               <Box container>
                 <Grid container>
                   {[...Array(100)].map((x, i) => {
-                    const color = (i < Math.ceil(baselineRisk*100) ? 
-                      "black" : 
-                      (i < Math.ceil(riskWithMHT*100) ? 
-                        "red" : 
+                    const color = (i < Math.ceil(risk.baseline_risk*100) ?
+                      "black" :
+                      (i < Math.ceil(riskWithMHT*100) ?
+                        "red" :
                         "teal"))
                     return (
                       <Grid key={i} item>
@@ -209,7 +249,7 @@ const MhtResults = () => {
             </Button>
           </Stack>
         </Paper>
-        {Object.keys(values).length > 0 ? 
+        {Object.keys(values).length > 0 ?
           <Paper style={{padding: 5, border: "1px solid teal", marginTop: 10}}>
             <Grid container>
               <Grid item xs={8}>
@@ -231,8 +271,8 @@ const MhtResults = () => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid container> 
-              {Object.keys(values).map(question => 
+            <Grid container>
+              {Object.keys(values).map(question =>
                 <Grid key={values[question].label} item xs={12}>
                   <div>
                     <Grid container>
