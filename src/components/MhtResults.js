@@ -171,7 +171,7 @@ const MhtResults = () => {
             component="p"
             color="teal"
           >
-            For 100 woman with your attributes over 10 years
+            For 100 women with your attributes over 10 years
           </Typography>
           <Grid container>
             <Grid item component={Card} xs={6}>
