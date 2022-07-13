@@ -29,6 +29,13 @@ const theme = createTheme({
 const MhtResults = () => {
   const [risk, setRisk] = useState({})
 
+  const transformData = (data) => {
+    const result = {}
+    Object.keys(data).forEach( (key) => {
+      result[key] = data[key]["value"]
+    })
+    return result
+  }
   useEffect(() => {
     const data = {
       "username": process.env.REACT_APP_API_USER,
@@ -37,8 +44,13 @@ const MhtResults = () => {
 
     axios
       .post("/auth-token/", data).then(response => {
-        const headers = { headers: {"Authorization": "Token " + response.data.token}}
-        return axios.get("/api/risk", headers)
+        const data = transformData(JSON.parse(localStorage.getItem("formValuesSubmitted")))
+        const payload = {
+          headers: {"Authorization": "Token " + response.data.token,
+            "Content-Type": "application/json"},
+          params: data
+        }
+        return axios.get("/api/risk", payload)
       })
       .then(response => {
         setRisk(response.data)

@@ -33,19 +33,15 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
   const stepNames = ["About you", "Reproductive health", "Breast cancer risk"]
   const nextStep = () => {
     setStep(step + 1)
+    console.log(step)
+    if (step == 2) {
+      localStorage.setItem("formValuesSubmitted", JSON.stringify(formValues))
+    }
   }
 
   const prevStep = () => {
     setStep(step - 1)
   }
-
-  /*
-  const extractFormValues = (formValues) => {
-    const values = {}
-    Object.keys(formValues).forEach(key => values[key] = formValues[key].value)
-    return values
-  }
-  */
 
   const handleFormChange = input => (e) => {
     const {value} = e.target
@@ -54,81 +50,81 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
       ...prevState,
       [input]: {...prevState[input], value: value}
     }))
-    
+
     localStorage.setItem("formValues", JSON.stringify(formValues))
   }
 
   const questionInputs = {
     "about": [
-      <DateAnswer 
-        key="date_of_birth" 
-        values={formValues} 
+      <DateAnswer
+        key="date_of_birth"
+        values={formValues}
         name="date_of_birth"
         handleFormChange={handleFormChange}
       />,
-      <NumberAnswer 
+      <NumberAnswer
         key="height"
-        values={formValues} 
-        name="height" 
+        values={formValues}
+        name="height"
         handleFormChange={handleFormChange}
       />,
-      <NumberAnswer 
+      <NumberAnswer
         key="weight"
-        values={formValues} 
-        name="weight" 
+        values={formValues}
+        name="weight"
         handleFormChange={handleFormChange}
       />,
-      <SelectAnswer 
+      <SelectAnswer
         key="ethnic_group"
-        values={formValues} 
-        name="ethnic_group" 
+        values={formValues}
+        name="ethnic_group"
         handleFormChange={handleFormChange}
       />,
-      <SelectAnswer 
+      <SelectAnswer
         key="education"
-        values={formValues} 
-        name="education" 
+        values={formValues}
+        name="education"
         handleFormChange={handleFormChange}
       />,
-      <NumberAnswer 
+      <NumberAnswer
         key="alcohol"
-        values={formValues} 
-        name="alcohol" 
+        values={formValues}
+        name="alcohol"
         handleFormChange={handleFormChange}
       />,
-      <SelectAnswer 
+      <SelectAnswer
         key="smoking"
-        values={formValues} 
-        name="smoking" 
+        values={formValues}
+        name="smoking"
         handleFormChange={handleFormChange}
       />,
     ],
     "menopause": [
-      <SelectAnswer 
+      <SelectAnswer
         key="mht"
         values={formValues}
         name="mht"
         handleFormChange={handleFormChange}
       />,
-      <NumberAnswer 
+      <NumberAnswer
         key="age_at_menarche"
         values={formValues}
         name="age_at_menarche"
         handleFormChange={handleFormChange}
       />,
-      <NumberAnswer 
+      <NumberAnswer
         key="time_since_last_period"
         values={formValues}
         name="time_since_last_period"
         handleFormChange={handleFormChange}
       />,
-      <SelectAnswer 
+      <SelectAnswer
         key="oral_contra"
         values={formValues}
         name="oral_contra"
         handleFormChange={handleFormChange}
       />,
-      <NumberAnswer 
+      <NumberAnswer
         key="age_at_first_child"
         values={formValues}
         name="age_at_first_child"
@@ -136,21 +132,21 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
       />
     ],
     "cancer": [
-      <SelectAnswer 
+      <SelectAnswer
         key="biopsy"
         values={formValues}
         name="biopsy"
         handleFormChange={handleFormChange}
       />,
-      (formValues.biopsy.value === "y" ? 
-        <NumberAnswer 
+      (formValues.biopsy.value === "y" ?
+        <NumberAnswer
           key="number_of_biopsies"
           values={formValues}
           name="number_of_biopsies"
           handleFormChange={handleFormChange}
         /> : <div key="number_of_biopsies"></div>
       ),
-      (formValues.biopsy.value === "y" ? 
+      (formValues.biopsy.value === "y" ?
         <SelectAnswer
           key="hyperplasia"
           values={formValues}
@@ -158,7 +154,7 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
           handleFormChange={handleFormChange}
         /> : <div key="hyperplasia"></div>
       ),
-      <NumberAnswer 
+      <NumberAnswer
         key="family_history"
         values={formValues}
         name="family_history"
@@ -169,31 +165,31 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
 
   const getQuestionSet = () => {
     switch (step) {
-    case 0: 
+    case 0:
       return (
-        <QuestionSet 
-          nextStep={nextStep} 
+        <QuestionSet
+          nextStep={nextStep}
           title={stepNames[step]}
           formControls = {questionInputs.about}
         />
       )
     case 1:
       return (
-        <QuestionSet 
-          nextStep={nextStep} 
+        <QuestionSet
+          nextStep={nextStep}
           title={stepNames[step]}
           formControls = {questionInputs.menopause}
         />
       )
     case 2:
       return (
-        <QuestionSet 
-          nextStep={nextStep} 
+        <QuestionSet
+          nextStep={nextStep}
           title={stepNames[step]}
           formControls = {questionInputs.cancer}
         />
       )
-    default: 
+    default:
       return ( <div>Submitted</div> )
     }
   }

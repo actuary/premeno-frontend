@@ -4,25 +4,25 @@ import Questionnaire from "./forms/Questionnaire"
 import { Container } from "@mui/material"
 
 const defaultValues = {
-  date_of_birth: {  
+  date_of_birth: {
     name: "date_of_birth",
     inputLabel: "DOB",
     value: new Date(1970, 1, 1),
     label: "What is your date of birth?",
   },
-  height: {  
+  height: {
     name: "height",
     inputLabel: "Height",
     value: "",
     label: "What your height in cm?",
   },
-  weight: {  
+  weight: {
     name: "weight",
     inputLabel: "Weight",
     value: "",
     label: "What your weight in kg?",
   },
-  ethnic_group: {  
+  ethnic_group: {
     name: "ethnic_group",
     inputLabel: "Ethnicity",
     value: "",
@@ -32,7 +32,7 @@ const defaultValues = {
       {value: "other", label: "Other"}
     ]
   },
-  education: {  
+  education: {
     name: "education",
     inputLabel: "Education level",
     value: "",
@@ -44,7 +44,7 @@ const defaultValues = {
       {value: "uni", label: "University"}
     ]
   },
-  smoking: {  
+  smoking: {
     name: "smoking",
     inputLabel: "Smoking status",
     value: "",
@@ -55,13 +55,13 @@ const defaultValues = {
       {value: "current", label: "Current smoker"},
     ]
   },
-  alcohol: {  
+  alcohol: {
     name: "alcohol",
     inputLabel: "Units per week",
     value: "",
     label: "How many standard units of alcohol do you consume a week on average?",
   },
-  mht: {  
+  mht: {
     name: "mht",
     inputLabel: "MHT formulation",
     value: "",
@@ -71,37 +71,25 @@ const defaultValues = {
       {value: "e", label: "Oestrogen only"}
     ]
   },
-  age_at_first_child: {  
+  age_at_first_child: {
     name: "age_at_first_child",
     inputLabel: "Age at 1st child",
     value: "",
-    label: "What age did you have your first child?",
-    choices: [
-      {value: "0_19", label: "<20 years"},
-      {value: "20_24", label: "20-24 years"},
-      {value: "25_29", label: "25-29 years"},
-      {value: "30+", label: "30+ years"},
-      {value: "NA", label: "No children"},
-    ]
+    label: "What age did you have your first child?"
   },
-  age_at_menarche: {  
+  age_at_menarche: {
     name: "age_at_menarche",
     inputLabel: "Age at menarche",
     value: "",
     label: "What age (years) did you have your first period?",
   },
-  time_since_last_period: {  
+  time_since_last_period: {
     name: "time_since_last_period",
     inputLabel: "Months",
     value: "",
-    label: "How long (months) has it been since your last period",
-    choices: [
-      {value: "0_55", label: "<55 years"},
-      {value: "55_65", label: "55-65 years"},
-      {value: "NA", label: "I am not yet menopausal"},
-    ]
+    label: "How long (months) has it been since your last period"
   },
-  oral_contra: {  
+  oral_contra: {
     name: "oral_contra",
     inputLabel: "Oral contraception",
     value: "",
@@ -111,7 +99,7 @@ const defaultValues = {
       {value: "y", label: "Used at least once"}
     ]
   },
-  hysterectomy: {  
+  hysterectomy: {
     name: "hysterectomy",
     inputLabel: "Hysterectomy",
     value: "",
@@ -121,13 +109,13 @@ const defaultValues = {
       {value: "y", label: "Yes"}
     ]
   },
-  family_history: {  
+  family_history: {
     name: "family_history",
     inputLabel: "Number of close relatives",
     value: "",
     label: "How many of your close relatives have been diagnosed with breast cancer?",
   },
-  biopsy: {  
+  biopsy: {
     name: "biopsy",
     inputLabel: "Breast biopsy",
     value: "",
@@ -137,13 +125,13 @@ const defaultValues = {
       {value: "y", label: "Yes"}
     ]
   },
-  number_of_biopsies: {  
+  number_of_biopsies: {
     name: "number_of_biopsies",
     inputLabel: "Number of biopsies",
     value: "",
     label: "How many breast biopsies have you had?",
   },
-  hyperplasia: {  
+  hyperplasia: {
     name: "hyperplasia",
     inputLabel: "Hyperplasia",
     value: "",
