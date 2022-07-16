@@ -33,10 +33,6 @@ const PersonalDetailsForm = ({ formValues, setFormValues}) => {
   const stepNames = ["About you", "Reproductive health", "Breast cancer risk"]
   const nextStep = () => {
     setStep(step + 1)
-    console.log(step)
-    if (step == 2) {
-      localStorage.setItem("formValuesSubmitted", JSON.stringify(formValues))
-    }
   }
 
   const prevStep = () => {
