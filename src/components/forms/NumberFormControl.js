@@ -5,7 +5,7 @@ import {
   TextField,
 } from "@mui/material"
 
-const NumberFormControl = ({ name, control, label, rules }) => {
+const NumberFormControl = ({ name, control, label, rules, disabled=false }) => {
 
   return (
     <Controller
@@ -20,6 +20,7 @@ const NumberFormControl = ({ name, control, label, rules }) => {
             label={label}
             error={!!fieldState.error}
             helperText={fieldState.error?.message}
+            disabled={disabled}
           />
         </FormControl>
       )}

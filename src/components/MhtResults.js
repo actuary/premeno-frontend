@@ -15,6 +15,8 @@ import {
 import { teal } from "@mui/material/colors"
 import { Woman } from "@mui/icons-material"
 
+import { getLocalData } from "./forms/utils"
+
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -29,13 +31,13 @@ const theme = createTheme({
 const MhtResults = () => {
   const [risk, setRisk] = useState({})
 
-  const transformData = (data) => {
-    const result = {}
-    Object.keys(data).forEach( (key) => {
-      result[key] = data[key]["value"]
-    })
-    return result
+  const retrieveFormData = () => {
+    const about = getLocalData("about_you")
+    const repro = getLocalData("reproductive_health")
+    const bcr = getLocalData("breast_cancer_risk")
+    return {...about, ...repro, ...bcr}
   }
+
   useEffect(() => {
     const data = {
       "username": process.env.REACT_APP_API_USER,
@@ -44,7 +46,7 @@ const MhtResults = () => {
 
     axios
       .post("/auth-token/", data).then(response => {
-        const data = transformData(JSON.parse(localStorage.getItem("formValuesSubmitted")))
+        const data = retrieveFormData()
         const payload = {
           headers: {"Authorization": "Token " + response.data.token,
             "Content-Type": "application/json"},
