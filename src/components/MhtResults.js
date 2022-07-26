@@ -1,5 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { toPng } from "html-to-image"
+import { jsPDF } from "jspdf"
 
 import {
   Paper,
@@ -301,6 +303,23 @@ const MhtResults = () => {
     )
   }
 
+  const downloadPDF = () => {
+    console.log("Downloading pdf")
+
+    toPng(document.getElementById("results_bc"), { quality: 0.95 })
+      .then(function (dataUrl) {
+        const pdf = new jsPDF()
+
+        const {width, height} = pdf.getImageProperties(dataUrl)
+        const pdfWidth = pdf.internal.pageSize.getWidth()
+        const pdfHeight = (height * pdfWidth) / width
+
+        pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight)
+
+        pdf.save("results.pdf")
+      })
+  }
+
   const riskWithMHT = Math.min(risk.relative_risk * risk.baseline_risk, 1)
   const values = JSON.parse(localStorage.getItem("formValues"))
 
@@ -322,7 +341,7 @@ const MhtResults = () => {
               <Tab value="vs" label="Benefits" />
             </TabList>
           </AppBar>
-          <TabPanel value="bc" index={0}>
+          <TabPanel id="results_bc" value="bc" index={0}>
             <DefinitionExplainer/>
             <RiskTextDisplay
               baseline={risk.baseline_risk}
@@ -360,7 +379,7 @@ const MhtResults = () => {
         </TabContext>
         <Paper style={{padding: 5, border: "1px solid teal", marginTop: 10}}>
           <Stack justify="center" spacing={2}>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={downloadPDF}>
               Download results PDF
             </Button>
             <Button href="/questionnaire" style={{border: "1px solid teal"}}>
