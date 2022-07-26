@@ -22,9 +22,10 @@ const theme = createTheme({
 
 const ResponsiveAppBar = () => {
   const pages = [
-    { label: "About", route: "/about" }, 
-    { label: "Questionnaire", route: "/questionnaire"}, 
-    { label: "Risk Assessment", route: "/results"} 
+    { label: "About", route: "/about" },
+    { label: "Questionnaire", route: "/questionnaire"},
+    { label: "Risk Assessment", route: "/results"},
+    { label: "Symptoms", route: "/symptoms"}
   ]
   return (
     <ThemeProvider theme={theme}>
@@ -66,4 +67,3 @@ const ResponsiveAppBar = () => {
   )
 }
 export default ResponsiveAppBar
-
