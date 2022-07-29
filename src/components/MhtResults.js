@@ -336,9 +336,10 @@ const MhtResults = () => {
               aria-label="full width tabs example"
             >
               <Tab value="bc" label="Breast Cancer" />
-              <Tab value="vte" label="VTE / Clot" />
-              <Tab value="cvd" label="Stroke / CHD" />
-              <Tab value="vs" label="Benefits" />
+              <Tab value="cvd" label="Fracture Risk" />
+              <Tab value="vte" label="Venous Thromboembolism" />
+              <Tab value="cvd" label="Cardiovascular Disease" />
+              <Tab value="vs" label="Symptom Relief" />
             </TabList>
           </AppBar>
           <TabPanel id="results_bc" value="bc" index={0}>
