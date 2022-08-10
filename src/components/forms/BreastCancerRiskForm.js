@@ -6,6 +6,7 @@ import { Button, Box, Typography } from "@mui/material"
 
 import SelectFormControl from "./SelectFormControl"
 import NumberFormControl from "./NumberFormControl"
+import FamilyHistory from "./FamilyHistory"
 
 import { getLocalData } from "./utils"
 
@@ -92,20 +93,7 @@ const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
           />
         </>
       }
-      <Typography component="h6" variant="h6" align="left" color="teal">
-        How many of your close relatives have been diagnosed with breast cancer?
-      </Typography>
-      <NumberFormControl
-        key="family_history"
-        name="family_history"
-        control={control}
-        label="How many of your close relatives have been diagnosed with breast cancer?"
-        rules={{
-          required: "Required. Enter 0 if no relatives have been diagnosed or if unknown",
-          min: {value: 0, message: "Enter 0 if no relatives have been diagnosed or if unknown"},
-          max: {value: 2, message: "Enter up to two relatives."}
-        }}
-      />
+      <FamilyHistory control={control} getValues={getValues} watch={watch}/>
       <Box display="flex" justifyContent="flex-end">
         <Button onClick={prevStep}>
           Back

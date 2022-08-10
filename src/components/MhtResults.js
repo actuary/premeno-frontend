@@ -45,7 +45,7 @@ const DefinitionExplainer = () => (
       color="primary"
     >
       <strong>Background risk:</strong> This shows the estimated chance of
-      being diagnosed with breast cancer over the next 10 years, without the
+      being diagnosed with breast cancer over the next 5 years, without the
       use of MHT.
     </Typography>
     <Typography
@@ -53,14 +53,14 @@ const DefinitionExplainer = () => (
       color="primary"
     >
       <strong>Relative risk:</strong> This how using MHT will affect your background
-      risk of cancer over the subsequent 10 years.
+      risk of cancer over the subsequent 5 years.
     </Typography>
     <Typography
       component="p"
       color="primary"
     >
       <strong>Risk with MHT use:</strong> This shows the estimated chance of
-      being diagnosed with breast cancer over the next 10 years, if you decide
+      being diagnosed with breast cancer over the next 5 years, if you decide
       to take MHT.
     </Typography>
     <br />
@@ -85,7 +85,7 @@ const RiskTextDisplay = ({ baseline, relative_risk, total_risk }) => (
               component="p"
               color="primary"
             >
-              10 year background risk
+              5 year background risk
             </Typography>
             <Typography
               variant="h3"
@@ -121,7 +121,7 @@ const RiskTextDisplay = ({ baseline, relative_risk, total_risk }) => (
               component="p"
               color="primary"
             >
-              10 year risk with MHT use
+              5 year risk with MHT use
             </Typography>
             <Typography
               variant="h3"
@@ -250,8 +250,8 @@ const MhtResults = () => {
     return {...about, ...repro, ...bcr}
   }
 
-  const length = 20
-  const width = 25
+  const length = 25
+  const width = 40
   const total = length * width
 
   useEffect(() => {
@@ -355,7 +355,7 @@ const MhtResults = () => {
                 component="p"
                 color="teal"
               >
-                For {total} women with your attributes over 10 years
+                For {total} women with your attributes over 5 years
               </Typography>
               <Grid container align="center">
                 <Grid item component={Card} xs={8}>
