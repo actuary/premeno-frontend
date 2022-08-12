@@ -20,7 +20,7 @@ const RadioFormControl = ({ name, control, label, choices, rules }) => {
           <FormLabel id={name.concat("_radio")}>{label}</FormLabel>
           <RadioGroup
             {...field}
-            error={!!fieldState.error}
+            error={fieldState.error ? 1 : 0}
           >
             {choices.map(c =>
               <FormControlLabel

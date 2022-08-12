@@ -15,7 +15,8 @@ import {
   Divider,
   AppBar, Tab,
   createTheme,
-  ThemeProvider
+  ThemeProvider,
+  LinearProgress
 } from "@mui/material"
 
 import { TabPanel, TabContext, TabList } from "@mui/lab"
@@ -74,11 +75,11 @@ const DefinitionExplainer = () => (
   </Paper>
 )
 
-const RiskTextDisplay = ({ baseline, relative_risk, total_risk }) => (
+const RiskTextDisplay = ({ baseline, total_risk }) => (
   <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
     <Stack direction="row" spacing={3} justifyContent="space-between">
       <Grid container align="center" alignItems="center">
-        <Grid item component={Card} xs={3.9}>
+        <Grid item component={Card} xs={12} md={6}>
           <CardContent>
             <Typography
               variant="h6"
@@ -96,25 +97,7 @@ const RiskTextDisplay = ({ baseline, relative_risk, total_risk }) => (
             </Typography>
           </CardContent>
         </Grid>
-        <Grid item component={Card} xs={3.9}>
-          <CardContent>
-            <Typography
-              variant="h6"
-              component="p"
-              color="primary"
-            >
-              Relative risk of MHT use
-            </Typography>
-            <Typography
-              variant="h3"
-              component="p"
-              color="primary"
-            >
-              {relative_risk.toFixed(1)}x
-            </Typography>
-          </CardContent>
-        </Grid>
-        <Grid item component={Card} xs={3.9}>
+        <Grid item component={Card} xs={12} md={6}>
           <CardContent>
             <Typography
               variant="h6"
@@ -139,7 +122,7 @@ const RiskTextDisplay = ({ baseline, relative_risk, total_risk }) => (
 
 const RiskExplainer = ({ anyway_risk, extra_risk, no_risk }) => (
   <Grid container align="center" spacing={1}>
-    <Grid item component={Card} xs={12}>
+    <Grid item component={Card} xs={12} md={4}>
       <CardContent>
         <Woman fontSize="large" style={{ color: "teal" }}/>
         <Typography
@@ -149,11 +132,11 @@ const RiskExplainer = ({ anyway_risk, extra_risk, no_risk }) => (
           fontFamily="monospace"
         >
           {no_risk} are likely not to get breast cancer whether they
-          used menopausal homrone therapy or not
+          used menopausal hormone therapy or not
         </Typography>
       </CardContent>
     </Grid>
-    <Grid item component={Card} xs={12}>
+    <Grid item component={Card} xs={12} md={4}>
       <CardContent>
         <Woman fontSize="large" style={{ color: "black" }}/>
         <Typography
@@ -167,7 +150,7 @@ const RiskExplainer = ({ anyway_risk, extra_risk, no_risk }) => (
         </Typography>
       </CardContent>
     </Grid>
-    <Grid item component={Card} xs={12}>
+    <Grid item component={Card} xs={12} md={4}>
       <CardContent>
         <Woman fontSize="large" style={{ color: "red" }}/>
         <Typography
@@ -242,6 +225,7 @@ const Questions = ({ values }) => (
 
 const MhtResults = () => {
   const [risk, setRisk] = useState({})
+  const [spinner, setSpinner] = useState(true)
 
   const retrieveFormData = () => {
     const about = getLocalData("about_you")
@@ -271,10 +255,12 @@ const MhtResults = () => {
         return axios.get("/api/risk", payload)
       })
       .then(response => {
+        setSpinner(false)
         setRisk(response.data)
         console.log(response.data)
       })
       .catch(error => {
+        setSpinner(false)
         setRisk({})
         console.log(error.response)
       })
@@ -290,13 +276,23 @@ const MhtResults = () => {
     return (
       <ThemeProvider theme={theme}>
         <Container>
-          <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
-            <Typography
-              component="p"
-              color="primary"
-            >
-              No results available.
-            </Typography>
+          <Paper
+            style={{padding: 20, border: "1px solid teal", "margin": 10}}
+          >
+            { spinner ?
+              <LinearProgress color="primary" sx={{height: 20}}/> :
+              <Stack justify="center" spacing={2}>
+                <Typography
+                  component="p"
+                  color="primary"
+                >
+                  No results available.
+                </Typography>
+                <Button href="/questionnaire" style={{border: "1px solid teal"}}>
+                  Take questionnaire again
+                </Button>
+              </Stack>
+            }
           </Paper>
         </Container>
       </ThemeProvider>
@@ -336,17 +332,16 @@ const MhtResults = () => {
               aria-label="full width tabs example"
             >
               <Tab value="bc" label="Breast Cancer" />
-              <Tab value="cvd" label="Fracture Risk" />
-              <Tab value="vte" label="Venous Thromboembolism" />
-              <Tab value="cvd" label="Cardiovascular Disease" />
-              <Tab value="vs" label="Symptom Relief" />
+              <Tab value="frac" label="Fracture Risk" />
+              <Tab value="vte" label="VTD" />
+              <Tab value="cvd" label="CVD" />
+              <Tab value="vs" label="Symptoms" />
             </TabList>
           </AppBar>
           <TabPanel id="results_bc" value="bc" index={0}>
             <DefinitionExplainer/>
             <RiskTextDisplay
               baseline={risk.baseline_risk}
-              relative_risk={risk.relative_risk}
               total_risk={riskWithMHT}
             />
             <Paper style={{padding: 5, border: "1px solid teal", marginTop: 10}}>
@@ -358,20 +353,20 @@ const MhtResults = () => {
                 For {total} women with your attributes over 5 years
               </Typography>
               <Grid container align="center">
-                <Grid item component={Card} xs={8}>
-                  <IconArray
-                    Icon={Woman}
-                    length={length}
-                    width={length}
-                    black={risk.baseline_risk}
-                    red={riskWithMHT}
-                  />
-                </Grid>
-                <Grid item component={Card} xs={4}>
+                <Grid item component={Card} xs={12} md={12}>
                   <RiskExplainer
                     no_risk={Math.round((1 - riskWithMHT) * total)}
                     extra_risk={Math.round((riskWithMHT - risk.baseline_risk) * total)}
                     anyway_risk={Math.round(risk.baseline_risk * total)}
+                  />
+                </Grid>
+                <Grid item component={Card} xs={12} md={12}>
+                  <IconArray
+                    Icon={Woman}
+                    length={length}
+                    width={width}
+                    black={risk.baseline_risk}
+                    red={riskWithMHT}
                   />
                 </Grid>
               </Grid>

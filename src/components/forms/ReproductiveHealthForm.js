@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form"
 
 import { Button, Box, Typography, Grid } from "@mui/material"
 
-import SelectFormControl from "./SelectFormControl"
-import NumberFormControl from "./NumberFormControl"
-import CheckboxFormControl from "./CheckboxFormControl"
+import SelectFormControl from "./controls/SelectFormControl"
+import NumberFormControl from "./controls/NumberFormControl"
+import CheckboxFormControl from "./controls/CheckboxFormControl"
 
 import { getLocalData } from "./utils"
 

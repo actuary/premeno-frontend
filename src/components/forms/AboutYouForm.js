@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form"
 
 import { Typography, Button, Box, Grid } from "@mui/material"
 
-import SelectFormControl from "./SelectFormControl"
-import DateFormControl from "./DateFormControl"
-import NumberFormControl from "./NumberFormControl"
-import RadioFormControl from "./RadioFormControl"
+import SelectFormControl from "./controls/SelectFormControl"
+import DateFormControl from "./controls/DateFormControl"
+import NumberFormControl from "./controls/NumberFormControl"
+import RadioFormControl from "./controls/RadioFormControl"
 
 import { getAge, getLocalData } from "./utils"
 

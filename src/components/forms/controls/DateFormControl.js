@@ -9,7 +9,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns"
 
 import {
   LocalizationProvider,
-  DesktopDatePicker
+  MobileDatePicker
 } from "@mui/x-date-pickers"
 
 const DateFormControl = ({ name, control, label, rules }) => {
@@ -24,7 +24,7 @@ const DateFormControl = ({ name, control, label, rules }) => {
         rules={rules}
         render={({ field, fieldState }) => (
           <FormControl fullWidth margin="normal">
-            <DesktopDatePicker
+            <MobileDatePicker
               {... field}
               label={label}
               inputFormat="dd/MM/yyyy"
@@ -36,7 +36,7 @@ const DateFormControl = ({ name, control, label, rules }) => {
                 />
               )}
             >
-            </DesktopDatePicker>
+            </MobileDatePicker>
           </FormControl>
         )}
       />

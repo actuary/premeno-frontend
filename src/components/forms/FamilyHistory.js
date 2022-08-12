@@ -2,8 +2,8 @@ import { useState, useEffect } from "react"
 
 import { Typography } from "@mui/material"
 
-import SelectFormControl from "./SelectFormControl"
-import NumberFormControl from "./NumberFormControl"
+import SelectFormControl from "./controls/SelectFormControl"
+import NumberFormControl from "./controls/NumberFormControl"
 
 const FamilyHistory = ( { getValues, watch, control }) => {
 
@@ -37,8 +37,8 @@ const FamilyHistory = ( { getValues, watch, control }) => {
           {value: "1", label: "Yes"}
         ]}
         rules={{ required: "Required." }}
-      /> 
-      {showMother == "1" ? 
+      />
+      {showMother == "1" ?
         <NumberFormControl
           key="mother_age_at_diagnosis"
           name="mother_age_at_diagnosis"

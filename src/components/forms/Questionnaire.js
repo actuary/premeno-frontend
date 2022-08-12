@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import {
   Typography,
+  Container,
   Paper,
   Stepper,
   Step,
@@ -62,39 +63,41 @@ const Questionnaire = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
-        <Typography component="h1" variant="h4" align="center" color="teal">
-          MHT Risk Questionnaire
-        </Typography>
-        <Stepper activeStep={step} style={{marginTop: "10px", marginBottom: "10px"}}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        {step === steps.length ? (
+      <Container maxWidth="md">
+        <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
+          <Typography component="h1" variant="h4" align="center" color="teal">
+            MHT Risk Questionnaire
+          </Typography>
+          <Stepper activeStep={step} style={{marginTop: "10px", marginBottom: "10px"}}>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          {step === steps.length ? (
+            <>
+              <Stack justify="center" spacing={2}>
+                <Typography variant="h5">
+                  Thank you for completing the questionnaire.
+                </Typography>
+                <Button href="/results" variant="contained" color="primary">
+                  View results
+                </Button>
+                <Button onClick={prevStep}>
+                  Back
+                </Button>
+              </Stack>
+            </>
+          ) : (
+            <>
+              {getForm(step)}
+            </>
+          )}
           <>
-            <Stack justify="center" spacing={2}>
-              <Typography variant="h5">
-                Thank you for completing the questionnaire.
-              </Typography>
-              <Button href="/results" variant="contained" color="primary">
-                View results
-              </Button>
-              <Button onClick={prevStep}>
-                Back
-              </Button>
-            </Stack>
           </>
-        ) : (
-          <>
-            {getForm(step)}
-          </>
-        )}
-        <>
-        </>
-      </Paper>
+        </Paper>
+      </Container>
     </ThemeProvider>
   )
 }

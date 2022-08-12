@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form"
 
 import { Button, Box, Typography } from "@mui/material"
 
-import SelectFormControl from "./SelectFormControl"
-import NumberFormControl from "./NumberFormControl"
+import SelectFormControl from "./controls/SelectFormControl"
+import NumberFormControl from "./controls/NumberFormControl"
 import FamilyHistory from "./FamilyHistory"
 
 import { getLocalData } from "./utils"

@@ -7,7 +7,7 @@ import {
 import Navbar from "./Navbar"
 import Footer from "./components/Footer"
 import Home from "./components/Home"
-import PersonalDetails from "./components/PersonalDetails"
+import Questionnaire from "./components/forms/Questionnaire"
 import MhtResults from "./components/MhtResults"
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<Home />} />
-        <Route path="/questionnaire" element={<PersonalDetails setValues={setFormValues}/>} />
+        <Route path="/questionnaire" element={<Questionnaire setValues={setFormValues}/>} />
         <Route path="/results" element={<MhtResults values={formValues}/>} />
         <Route path="/symptoms" element={<MhtResults values={formValues}/>} />
       </Routes>
