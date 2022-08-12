@@ -26,7 +26,7 @@ const theme = createTheme({
   }
 })
 
-const Home = () => {
+const About = () => {
   const boldText = (text) => <span style={{fontWeight: "bold"}}>{text}</span>
 
   return (
@@ -104,4 +104,4 @@ const Home = () => {
 
 }
 
-export default Home
+export default About
