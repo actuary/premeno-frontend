@@ -245,7 +245,8 @@ const MhtResults = () => {
     }
 
     axios
-      .post(process.env.REACT_APP_API_URL + "/auth-token/", data).then(response => {
+      .post(process.env.REACT_APP_API_URL + "/auth-token/", data, 
+        { "Content-Type": "application/json" }).then(response => {
         const data = retrieveFormData()
         const payload = {
           headers: {"Authorization": "Token " + response.data.token,
