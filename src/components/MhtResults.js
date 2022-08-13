@@ -245,14 +245,14 @@ const MhtResults = () => {
     }
 
     axios
-      .post("/auth-token/", data).then(response => {
+      .post(`$(process.env.REACT_APP_API_URL)/auth-token/`, data).then(response => {
         const data = retrieveFormData()
         const payload = {
           headers: {"Authorization": "Token " + response.data.token,
             "Content-Type": "application/json"},
           params: data
         }
-        return axios.get("/api/risk", payload)
+        return axios.get(`$(process.env.REACT_APP_API_URL)/api/risk`, payload)
       })
       .then(response => {
         setSpinner(false)
