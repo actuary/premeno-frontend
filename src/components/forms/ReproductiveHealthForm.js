@@ -42,8 +42,8 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
         control={control}
         label="Have you had a hysterectomy, or do you have a Mirena coil (IUS) in situ?"
         choices = {[
-          {value: "e+p", label: "Yes"},
-          {value: "e", label: "No"}
+          {value: "e", label: "Yes"},
+          {value: "e+p", label: "No"}
         ]}
         rules= {{required: "Required"}}
       />
