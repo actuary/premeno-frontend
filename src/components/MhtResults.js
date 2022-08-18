@@ -334,7 +334,7 @@ const MhtResults = () => {
             >
               <Tab value="bc" label="Breast Cancer" />
               <Tab value="frac" label="Fracture Risk" />
-              <Tab value="vte" label="VTD" />
+              <Tab value="vte" label="VTE" />
               <Tab value="cvd" label="CVD" />
               <Tab value="vs" label="Symptoms" />
             </TabList>

@@ -34,16 +34,16 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
   return (
     <form id="reproductive_health" onSubmit={handleSubmit(onSubmit)}>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        What type of MHT formulation will you be taking?
+        Have you had a hysterectomy, or do you have a Mirena coil (IUS) in situ?
       </Typography>
       <SelectFormControl
         key="mht"
         name="mht"
         control={control}
-        label="What MHT formulation will you be taking?"
+        label="Have you had a hysterectomy, or do you have a Mirena coil (IUS) in situ?"
         choices = {[
-          {value: "e+p", label: "Oestrogen-progesterone"},
-          {value: "e", label: "Oestrogen only"}
+          {value: "e+p", label: "Yes"},
+          {value: "e", label: "No"}
         ]}
         rules= {{required: "Required"}}
       />

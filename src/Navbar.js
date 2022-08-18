@@ -16,6 +16,8 @@ import { createTheme } from "@mui/material/styles"
 import { ThemeProvider } from "@emotion/react"
 import { teal } from "@mui/material/colors"
 
+import { ReactComponent as LogoSmall } from "./images/alt_logo_small_circle.svg"
+
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -29,6 +31,7 @@ const theme = createTheme({
 
 const BigNavbar = ({ pages }) => (
   <Toolbar  disableGutters variant = "dense">
+    <LogoSmall width="40px" height="40px" style={{padding: 5}}/>
     <Typography
       variant="h6"
       noWrap
@@ -44,7 +47,7 @@ const BigNavbar = ({ pages }) => (
         textDecoration: "none",
       }}
     >
-      PREMENO
+      MAsCoT
     </Typography>
     <>
       {pages.map((page) => (
@@ -102,6 +105,7 @@ const SmallNavbar = ({ pages }) => {
           ))}
         </List>
       </Drawer>
+      <LogoSmall width="40px" height="40px"/>
       <Typography
         variant="h4"
         noWrap

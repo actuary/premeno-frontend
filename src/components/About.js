@@ -7,6 +7,7 @@ import {
   Button
 } from "@mui/material"
 
+import { ReactComponent as Logo } from "../images/alt_logo_full.svg"
 import AssignmentIcon from "@mui/icons-material/Assignment"
 import PsychologyIcon from "@mui/icons-material/Psychology"
 
@@ -34,11 +35,16 @@ const About = () => {
       <Paper
         style={{padding: 5, border: "1px solid teal", "marginTop": 10}}
       >
+        <Grid container justifyItems="center">
+          <Grid item xs={12} md={4}>
+            <Logo width="100%" height="100%"/>
+          </Grid>
+        </Grid>
         <Typography
           component="p"
           color="primary"
         >
-          The {boldText("PreMeno")} tool has been built to communicate
+          {boldText("MAsCoT")} has been built to communicate
           the risks and benefits of taking menopausal hormone therapy (MHT), also known as
           hormone replacement therapy (HRT). It&apos;s aimed at women who are experiencing
           menopausal symptoms and are considering their options.
@@ -72,7 +78,7 @@ const About = () => {
           <Grid item xs={4}>
             <Button
               href="/questionnaire"
-              style={{background: teal[500], padding: 5, border: "1px solid teal", marginTop: 10, textTransform: "none"}}
+              style={{background: teal[500], padding: 5, border: "1px solid teal", marginTop: 10, textTransform: "none", height: "90%"}}
               fullWidth
             >
               <Grid container alignItems="center">
@@ -85,7 +91,7 @@ const About = () => {
           </Grid>
           <Grid item xs={4}>
             <Button
-              style={{background: teal[500], padding: 5, border: "1px solid teal", marginTop: 10, textTransform: "none"}}
+              style={{background: teal[500], padding: 5, border: "1px solid teal", marginTop: 10, textTransform: "none", height: "90%"}}
               href="/results"
               fullWidth
             >
