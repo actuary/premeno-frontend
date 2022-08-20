@@ -9,6 +9,7 @@ import NumberFormControl from "./controls/NumberFormControl"
 import CheckboxFormControl from "./controls/CheckboxFormControl"
 
 import { getLocalData } from "./utils"
+import questions from "./questions"
 
 const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
 
@@ -34,27 +35,27 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
   return (
     <form id="reproductive_health" onSubmit={handleSubmit(onSubmit)}>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        Have you had a hysterectomy, or do you have a Mirena coil (IUS) in situ?
+        {questions["mht"]["question"]}
       </Typography>
       <SelectFormControl
         key="mht"
         name="mht"
         control={control}
-        label="Have you had a hysterectomy, or do you have a Mirena coil (IUS) in situ?"
+        label={questions["mht"]["label"]}
         choices = {[
-          {value: "e", label: "Yes"},
-          {value: "e+p", label: "No"}
+          {value: "e", label: questions["mht"]["choices"]["e"]},
+          {value: "e+p", label: questions["mht"]["choices"]["e+p"]}
         ]}
         rules= {{required: "Required"}}
       />
       <Typography component="h6" variant="h6" align="left" color="teal">
-        What age (years) did you have your first period?
+        {questions["age_at_menarche"]["question"]}
       </Typography>
       <NumberFormControl
         key="age_at_menarche"
         name="age_at_menarche"
         control={control}
-        label="What age (years) did you have your first period?"
+        label={questions["age_at_menarche"]["label"]}
         rules={{
           required: "Required",
           min: {value: 5, message: "Invalid age"},
@@ -62,7 +63,7 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
         }}
       />
       <Typography component="h6" variant="h6" align="left" color="teal">
-        What age did you have your first child?
+        {questions["age_at_first_child"]["question"]}
       </Typography>
       <Grid container spacing= {{xs: 2 }} alignItems="center">
         <Grid item xs={8}>
@@ -70,7 +71,7 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
             key="age_at_first_child"
             name="age_at_first_child"
             control={control}
-            label="What age did you have your first child?"
+            label={questions["age_at_first_child"]["question"]}
             disabled={disableAgeAtFirstChild}
             rules={{
               validate: {
@@ -97,7 +98,7 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
             key="no_children"
             name="no_children"
             control={control}
-            label="I have not had children"
+            label={questions["no_children"]["label"]}
             rules={{
               validate: () => {
                 //to ensure next updates on change
@@ -109,16 +110,16 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
         </Grid>
       </Grid>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        Have you ever used oral contraception?
+        {questions["oral_contra"]["question"]}
       </Typography>
       <SelectFormControl
         key="oral_contra"
         name="oral_contra"
         control={control}
-        label="Have you ever used oral contraception?"
+        label={questions["oral_contra"]["label"]}
         choices = {[
-          {value: "n", label: "Never used"},
-          {value: "y", label: "Used at least once"}
+          {value: "n", label: questions["oral_contra"]["choices"]["n"]},
+          {value: "y", label:questions["oral_contra"]["choices"]["y"]}
         ]}
         rules= {{required: "Required"}}
       />

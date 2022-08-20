@@ -92,7 +92,7 @@ const About = () => {
           <Grid item xs={4}>
             <Button
               style={{background: teal[500], padding: 5, border: "1px solid teal", marginTop: 10, textTransform: "none", height: "90%"}}
-              href="/results"
+              href="/symptoms"
               fullWidth
             >
               <Grid container alignItems="center">

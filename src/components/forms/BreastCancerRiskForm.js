@@ -9,6 +9,7 @@ import NumberFormControl from "./controls/NumberFormControl"
 import FamilyHistory from "./FamilyHistory"
 
 import { getLocalData } from "./utils"
+import questions from "./questions"
 
 const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
   const { handleSubmit, control, getValues, watch } = useForm({
@@ -32,29 +33,29 @@ const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
   return (
     <form id="breast_cancer_risk" onSubmit={handleSubmit(onSubmit)}>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        Have you had a breast biopsy?
+        {questions["biopsy"]["question"]}
       </Typography>
       <SelectFormControl
         key="biopsy"
         name="biopsy"
         control={control}
-        label="Have you had a breast biopsy?"
+        label={questions["biopsy"]["label"]}
         choices = {[
-          {value: "n", label: "No"},
-          {value: "y", label: "Yes"}
+          {value: "n", label: questions["biopsy"]["choices"]["n"]},
+          {value: "y", label: questions["biopsy"]["choices"]["y"]}
         ]}
         rules= {{required: "Required"}}
       />
       {showBiopsy && (
         <>
           <Typography component="h6" variant="h6" align="left" color="teal">
-            How many breast biopsies have you had?
+            {questions["number_of_biopsies"]["question"]}
           </Typography>
           <NumberFormControl
             key="number_of_biopsies"
             name="number_of_biopsies"
             control={control}
-            label="How many breast biopsies have you had?"
+            label={questions["number_of_biopsies"]["question"]}
             rules={{
               min: {value: 1, message: "Select no if you have not had a breast biopsy."},
               max: {value: 2, message: "Allows up to two biopsies."},
@@ -71,16 +72,16 @@ const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
       {showBiopsy &&
         <>
           <Typography component="h6" variant="h6" align="left" color="teal">
-            Have you had a biopsy with atypical hyperplasia?
+            {questions["hyperplasia"]["question"]}
           </Typography>
           <SelectFormControl
             key="hyperplasia"
             name="hyperplasia"
             control={control}
-            label="Have you had a biopsy with atypical hyperplasia?"
+            label={questions["hyperplasia"]["question"]}
             choices = {[
-              {value: "0", label: "No"},
-              {value: "1", label: "Yes"}
+              {value: "0", label: questions["hyperplasia"]["choices"]["0"]},
+              {value: "1", label: questions["hyperplasia"]["choices"]["1"]}
             ]}
             rules={{
               validate: {

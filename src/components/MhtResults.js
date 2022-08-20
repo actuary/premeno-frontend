@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { toPng } from "html-to-image"
-import { jsPDF } from "jspdf"
+import { saveAs } from "file-saver"
 
 import {
   Paper,
@@ -27,6 +26,7 @@ import { Woman } from "@mui/icons-material"
 import { getLocalData } from "./forms/utils"
 
 import IconArray from "./IconArray"
+import questions from "./forms/questions"
 
 const theme = createTheme({
   status: {
@@ -218,7 +218,7 @@ const Questions = ({ values }) => (
             </Grid>
           )}
         </Grid>
-      </> : <>No answers avaiable</>
+      </> : <>No answers available</>
     }
   </Paper>
 )
@@ -229,8 +229,42 @@ const MhtResults = () => {
 
   const retrieveFormData = () => {
     const about = getLocalData("about_you")
+
+    if (about["height_unit"] != "cm") {
+      const val = Math.round(parseInt(about["height_in"])/12.0 + parseInt(about["height_ft"])*30.48)
+      about["height"] = val.toString()
+      about["height_unit"] = "cm"
+    }
+
+    if (about["weight_unit"] != "kg") {
+      const val = Math.round(parseInt(about["weight"])/2.205)
+      about["weight"] = val.toString()
+      about["weight_unit"] = "kg"
+    }
+
     const repro = getLocalData("reproductive_health")
+
+    if (repro["no_children"] === true) {
+      repro["age_at_first_child"] = ""
+    }
+
+
     const bcr = getLocalData("breast_cancer_risk")
+
+    if (bcr["biopsy"] === "n") {
+      bcr["number_of_biopsies"] = ""
+      bcr["hyperplasia"] = ""
+    }
+
+    if (bcr["mother_has_cancer"] === "0") {
+      bcr["mother_age_at_diagnosis"] = ""
+    }
+
+    console.log(parseInt(bcr["number_of_sisters"]))
+    for (let i = 0; i < 5 - parseInt(bcr["number_of_sisters"]); i++) {
+      bcr[`sister_age_at_diagnosis_${4-i}`] = ""
+    }
+
     return {...about, ...repro, ...bcr}
   }
 
@@ -300,25 +334,75 @@ const MhtResults = () => {
     )
   }
 
+  const riskWithMHT = Math.min(risk.relative_risk * risk.baseline_risk, 1)
+  const values = JSON.parse(localStorage.getItem("formValues"))
+
   const downloadPDF = () => {
     console.log("Downloading pdf")
 
-    toPng(document.getElementById("results_bc"), { quality: 0.95 })
-      .then(function (dataUrl) {
-        const pdf = new jsPDF()
+    const formData = retrieveFormData()
 
-        const {width, height} = pdf.getImageProperties(dataUrl)
-        const pdfWidth = pdf.internal.pageSize.getWidth()
-        const pdfHeight = (height * pdfWidth) / width
-
-        pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight)
-
-        pdf.save("results.pdf")
+    const combineQnA = (qs) => (
+      qs.map(val => {
+        var answer = formData[val]
+        if (val === "date_of_birth") {
+          answer = new Date(formData[val]).toLocaleDateString()
+        }
+        return {
+          question: questions[val]["question"], 
+          answer: (
+            questions[val].choices === undefined ? 
+              answer : 
+              questions[val]["choices"][formData[val]]
+          )
+        }
       })
+    )
+
+    const about = [
+      "date_of_birth", "height", "weight", "ethnic_group", 
+      "education", "alcohol", "smoking"
+    ]
+
+    const reproductive_health = [
+      "mht", "age_at_menarche", "age_at_first_child", "oral_contra", 
+    ]
+
+    const cancer_risk = [
+      "biopsy", "number_of_biopsies", "hyperplasia", "mother_has_cancer",
+      "mother_age_at_diagnosis", "number_of_sisters", "sister_age_at_diagnosis_0",
+      "sister_age_at_diagnosis_1", "sister_age_at_diagnosis_2",
+      "sister_age_at_diagnosis_3", "sister_age_at_diagnosis_4"
+    ]
+    
+    const data = {
+      about: combineQnA(about),
+      repro: combineQnA(reproductive_health),
+      bcrisk: combineQnA(cancer_risk),
+      baseline_risk: (risk.baseline_risk * 100).toFixed(1),
+      total_risk: (riskWithMHT * 100).toFixed(1),
+      no_cancer: 1000 - Math.round(riskWithMHT * 1000),
+      cancer: Math.round(risk.baseline_risk * 1000),
+      cancer_with_mht: Math.round((riskWithMHT - risk.baseline_risk) * 1000)
+    }
+
+    axios
+      .post(process.env.REACT_APP_API_URL + "/api/symptoms/risk_report/", 
+        data, 
+        {
+          headers: { "Content-Type": "application/json" },
+          responseType: "blob"
+        })
+      .then(response => {
+        const file = new Blob([response.data], { type: "application/pdf" })
+        saveAs(file, "RiskResults.pdf")
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
+
   }
 
-  const riskWithMHT = Math.min(risk.relative_risk * risk.baseline_risk, 1)
-  const values = JSON.parse(localStorage.getItem("formValues"))
 
   return (
     <ThemeProvider theme={theme}>

@@ -9,6 +9,7 @@ import NumberFormControl from "./controls/NumberFormControl"
 import RadioFormControl from "./controls/RadioFormControl"
 
 import { getAge, getLocalData } from "./utils"
+import questions from "./questions"
 
 const AboutYouForm = ({ nextStep }) => {
   const { handleSubmit, control, formState, watch, getValues } = useForm({
@@ -37,17 +38,17 @@ const AboutYouForm = ({ nextStep }) => {
   return (
     <form id="about" onSubmit={handleSubmit(onSubmit)}>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        What&apos;s your date of birth?
+        {questions["date_of_birth"]["question"]}
       </Typography>
       <DateFormControl
         key="date_of_birth"
         name="date_of_birth"
         control={control}
-        label="Date of Birth"
-        rules={{required: true, validate: isValidAge }}
+        label={questions["date_of_birth"]["label"]}
+        rules={{required: "Required.", validate: isValidAge }}
       />
       <Typography component="h6" variant="h6" align="left" color="teal">
-        What height are you?
+        {questions["height"]["question"]}
       </Typography>
       <Grid container spacing= {{xs: 2 }} alignItems="center">
         { !showFeetInches ?
@@ -56,7 +57,7 @@ const AboutYouForm = ({ nextStep }) => {
               key="height"
               name="height"
               control={control}
-              label="What is your height?"
+              label={questions["height"]["label"]}
               rules={{
                 min: {value: 50, message: "Invalid height"},
                 max: {value: 250, message: "Invalid height"},
@@ -76,7 +77,7 @@ const AboutYouForm = ({ nextStep }) => {
                 key="height_ft"
                 name="height_ft"
                 control={control}
-                label="Feet"
+                label={questions["height_ft"]["label"]}
                 rules={{
                   min: {value: 1, message: "Invalid height"},
                   max: {value: 9, message: "Invalid height"},
@@ -94,7 +95,7 @@ const AboutYouForm = ({ nextStep }) => {
                 key="height_in"
                 name="height_in"
                 control={control}
-                label="Inches"
+                label={questions["height_in"]["label"]}
                 rules={{
                   min: {value: 0, message: "Invalid height"},
                   max: {value: 11, message: "Invalid height"},
@@ -114,17 +115,17 @@ const AboutYouForm = ({ nextStep }) => {
             key="height_unit"
             name="height_unit"
             control={control}
-            label="Units"
-            rules={{required: "Required" }}
+            label={questions["height_unit"]["label"]}
             choices = {[
               {value: "cm", label: "cm"},
               {value: "ft", label: "Feet/Inches"},
             ]}
+            rules={{}}
           />
         </Grid>
       </Grid>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        What is your weight?
+        {questions["weight"]["question"]}
       </Typography>
       <Grid container spacing= {{xs: 2 }} alignItems="center">
         <Grid item xs={8}>
@@ -132,7 +133,7 @@ const AboutYouForm = ({ nextStep }) => {
             key="weight"
             name="weight"
             control={control}
-            label="What is your weight?"
+            label={questions["weight"]["label"]}
             rules={{
               required: "Required",
               min: {value: 10, message: "Invalid weight"},
@@ -145,8 +146,8 @@ const AboutYouForm = ({ nextStep }) => {
             key="weight_unit"
             name="weight_unit"
             control={control}
-            label="Units"
-            rules={{required: "Required" }}
+            label={questions["weight_unit"]["label"]}
+            rules={{}}
             choices = {[
               {value: "kg", label: "Kilograms (kg)"},
               {value: "lbs", label: "Pounds (lbs)"},
@@ -155,43 +156,43 @@ const AboutYouForm = ({ nextStep }) => {
         </Grid>
       </Grid>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        What best describes your ethnicity?
+        {questions["ethnic_group"]["question"]}
       </Typography>
       <SelectFormControl
         key="ethnic_group"
         name="ethnic_group"
         control={control}
-        label="What is your ethnicity?"
+        label={questions["ethnic_group"]["label"]}
         choices = {[
-          {value: "white", label: "White"},
-          {value: "other", label: "Other"}
+          {value: "white", label: questions["ethnic_group"]["choices"]["white"]},
+          {value: "other", label: questions["ethnic_group"]["choices"]["other"]}
         ]}
         rules= {{required: "Required"}}
       />
       <Typography component="h6" variant="h6" align="left" color="teal">
-        What best describes your level of education?
+        {questions["education"]["question"]}
       </Typography>
       <SelectFormControl
         key="education"
         name="education"
         control={control}
-        label="What is your highest level of educational achievement?"
+        label={questions["education"]["label"]}
         choices = {[
-          {value: "primary", label: "Primary school"},
-          {value: "secondary", label: "Secondary school"},
-          {value: "college", label: "College/A-levels"},
-          {value: "uni", label: "University"}
+          {value: "primary", label: questions["education"]["choices"]["primary"]},
+          {value: "secondary", label: questions["education"]["choices"]["secondary"]},
+          {value: "college", label: questions["education"]["choices"]["college"]},
+          {value: "uni", label: questions["education"]["choices"]["uni"]}
         ]}
         rules= {{required: "Required"}}
       />
       <Typography component="h6" variant="h6" align="left" color="teal">
-        How many standard units of alcohol do you consume a week on average?
+        {questions["alcohol"]["question"]}
       </Typography>
       <NumberFormControl
         key="alcohol"
         name="alcohol"
         control={control}
-        label="How many standard units of alcohol do you consume a week on average?"
+        label={questions["alcohol"]["label"]}
         rules={{
           required: "Required",
           min: {value: 0, message: "Invalid units"},
@@ -199,17 +200,17 @@ const AboutYouForm = ({ nextStep }) => {
         }}
       />
       <Typography component="h6" variant="h6" align="left" color="teal">
-        Are you a smoker, or have you smoked in the past?
+        {questions["smoking"]["question"]}
       </Typography>
       <SelectFormControl
         key="smoking"
         name="smoking"
         control={control}
-        label="Are you a smoker, or have you smoked in the past?"
+        label={questions["smoking"]["label"]}
         choices = {[
-          {value: "never", label: "Never smoked"},
-          {value: "past", label: "Past smoker"},
-          {value: "current", label: "Current smoker"},
+          {value: "never", label: questions["smoking"]["choices"]["never"]},
+          {value: "past", label: questions["smoking"]["choices"]["past"]},
+          {value: "current", label: questions["smoking"]["choices"]["current"]},
         ]}
         rules= {{required: "Required"}}
       />

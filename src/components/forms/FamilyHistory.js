@@ -4,6 +4,7 @@ import { Typography } from "@mui/material"
 
 import SelectFormControl from "./controls/SelectFormControl"
 import NumberFormControl from "./controls/NumberFormControl"
+import questions from "./questions"
 
 const FamilyHistory = ( { getValues, watch, control }) => {
 
@@ -25,16 +26,16 @@ const FamilyHistory = ( { getValues, watch, control }) => {
   return (
     <>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        Has your mother been diagnosed with breast cancer?
+        {questions["mother_has_cancer"]["question"]}
       </Typography>
       <SelectFormControl
         key="mother_has_cancer"
         name="mother_has_cancer"
         control={control}
-        label="Has your mother been diagnosed with breast cancer?"
+        label={questions["mother_has_cancer"]["label"]}
         choices = {[
-          {value: "0", label: "No"},
-          {value: "1", label: "Yes"}
+          {value: "0", label: questions["mother_has_cancer"]["choices"]["0"]},
+          {value: "1", label: questions["mother_has_cancer"]["choices"]["1"]}
         ]}
         rules={{ required: "Required." }}
       />
@@ -43,7 +44,7 @@ const FamilyHistory = ( { getValues, watch, control }) => {
           key="mother_age_at_diagnosis"
           name="mother_age_at_diagnosis"
           control={control}
-          label="What age was your mother at first diagnosis of breast cancer?"
+          label={questions["mother_age_at_diagnosis"]["label"]}
           rules={{
             validate: {
               required: value => {
@@ -58,13 +59,13 @@ const FamilyHistory = ( { getValues, watch, control }) => {
         <></>
       }
       <Typography component="h6" variant="h6" align="left" color="teal">
-        How many (if any) of your sisters have been diagnosed with breast cancer?
+        {questions["number_of_sisters"]["question"]}
       </Typography>
       <NumberFormControl
         key="number_of_sisters"
         name="number_of_sisters"
         control={control}
-        label="How many (if any) of your sisters have been diagnosed with breast cancer?"
+        label={questions["number_of_sisters"]["label"]}
         rules={{
           required: "Required, enter 0 if none.",
           min: {value: 0, message: "Enter 0 for no sisters"},
@@ -77,7 +78,7 @@ const FamilyHistory = ( { getValues, watch, control }) => {
             key={`sister_age_at_diagnosis_${index}`}
             name={`sister_age_at_diagnosis_${index}`}
             control={control}
-            label={`What age was sister ${index+1} at first diagnosis of breast cancer?`}
+            label={questions[`sister_age_at_diagnosis_${index}`]["label"]}
             rules={{
               validate: {
                 required: value => {

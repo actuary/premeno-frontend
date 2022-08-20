@@ -14,6 +14,7 @@ const RadioFormControl = ({ name, control, label, choices, rules }) => {
     <Controller
       name={name}
       control={control}
+      defaultValue={choices[0].value}
       rules={rules}
       render={({ field, fieldState }) => (
         <FormControl fullWidth margin="normal">
