@@ -31,6 +31,7 @@ const theme = createTheme({
 import AboutYouForm from "./AboutYouForm"
 import ReproductiveHealthForm from "./ReproductiveHealthForm"
 import BreastCancerRiskForm from "./BreastCancerRiskForm"
+import Disclaimer from "../Disclaimer"
 
 import { getAge } from "./utils"
 
@@ -63,6 +64,7 @@ const Questionnaire = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Disclaimer/>
       <Container maxWidth="md">
         <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
           <Typography component="h1" variant="h4" align="center" color="teal">

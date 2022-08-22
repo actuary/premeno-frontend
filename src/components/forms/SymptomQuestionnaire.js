@@ -17,6 +17,7 @@ import SymptomSlider from "./controls/SymptomSlider"
 import { getLocalData } from "./utils"
 
 import { teal, amber } from "@mui/material/colors"
+import Disclaimer from "../Disclaimer"
 
 const theme = createTheme({
   status: {
@@ -122,6 +123,7 @@ const SymptomQuestionnaire = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Disclaimer/>
       <Container maxWidth="md">
         <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
           <Typography

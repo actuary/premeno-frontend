@@ -17,6 +17,7 @@ import {
   ThemeProvider,
   LinearProgress
 } from "@mui/material"
+import Disclaimer from "./Disclaimer"
 
 import { TabPanel, TabContext, TabList } from "@mui/lab"
 
@@ -406,6 +407,7 @@ const MhtResults = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Disclaimer/>
       <Container style={{padding: 5}}>
         <TabContext value={value}>
           <AppBar position="static">
