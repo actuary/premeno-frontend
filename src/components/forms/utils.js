@@ -1,16 +1,16 @@
-export const getLocalData = (key) => {
+export const getLocalData = (key, defaultValues = {}) => {
   let data = localStorage.getItem(key)
   if (data) {
     try {
       data = JSON.parse(data)
     } catch (err) {
       console.log(err)
-      return {}
+      return defaultValues
     }
     return data
   }
 
-  return {}
+  return defaultValues
 }
 
 export const getAge = (date) => {

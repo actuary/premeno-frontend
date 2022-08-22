@@ -11,11 +11,16 @@ import CheckboxFormControl from "./controls/CheckboxFormControl"
 import { getLocalData } from "./utils"
 import questions from "./questions"
 
+const defaultValues = {
+  no_children: true,
+  age_at_menarche: "",
+  age_at_first_child: ""
+}
 const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
 
   const { handleSubmit, control, formState, getValues, watch } = useForm({
     mode: "all",
-    defaultValues: getLocalData("reproductive_health")
+    defaultValues: getLocalData("reproductive_health", defaultValues)
   })
 
   const onSubmit = data => {

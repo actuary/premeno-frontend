@@ -13,15 +13,15 @@ const Disclaimer = () => (
       style={{padding: 5, border: "1px solid teal", "marginTop": 10, background: "#F5F5DC"}}
     >
       <Grid container alignItems="center">
-        <Grid item sx={1}>
+        <Grid item xs={2}>
           <WarningAmberIcon color="error" fontSize="large"/> 
         </Grid>
-        <Grid item sx={11}>
+        <Grid item xs={10}>
           <Typography
             component="p"
             color="darkred"
           >
-            Mascot is currently in a pilot phase.See the <a href="/about">&quot;about&quot;</a> page for more. 
+            Mascot is currently in a pilot phase. See the <a href="/about">&quot;about&quot;</a> page for more. 
           </Typography>
         </Grid>
       </Grid>

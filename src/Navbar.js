@@ -121,7 +121,7 @@ const SmallNavbar = ({ pages }) => {
           textDecoration: "none",
         }}
       >
-        PREMENO
+        MASCOT
       </Typography>
     </Toolbar>
   )

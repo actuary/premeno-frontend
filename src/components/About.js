@@ -5,7 +5,8 @@ import {
   ThemeProvider,
   createTheme,
   Grid,
-  Button
+  Button,
+  ListItem,
 } from "@mui/material"
 
 import { ReactComponent as Logo } from "../images/alt_logo_full.svg"
@@ -90,11 +91,14 @@ const About = () => {
           >
             There are a number of different reasons the tool might not calculate your risk accurately. For the moment, 
             this tool does not allow for the potential significant extra risk due to:
-            <ul>
-              <li> Being of Ashkenazi heritage, which potentially increases your breast cancer risk significantly</li>
-              <li> Having genetic mutations (BRCA1/2) that potentially predispose you to higher risk of breast cancer</li>
-              <li> Having had previously had cancer </li>
-            </ul>
+          </Typography>
+          <Typography
+            component="ul"
+            color="primary"
+          >
+            <ListItem sx={{ display: "list-item" }}> Being of Ashkenazi heritage, which potentially increases your breast cancer risk significantly</ListItem>
+            <ListItem sx={{ display: "list-item" }}> Having genetic mutations (BRCA1/2) that potentially predispose you to higher risk of breast cancer</ListItem>
+            <ListItem sx={{ display: "list-item" }}> Having previously had breast cancer</ListItem>
           </Typography>
           <br/>
           <Typography component="p" color="primary" > {boldText("How are the risk estimates calculated?")} </Typography>
@@ -152,13 +156,14 @@ const About = () => {
             color="primary"
           >
             As this is a pilot tool, we do not make claims about the statistical validity of these estimates. We must note that:
-            <ul>
-              <li> When using the CanRisk tool, we rely on the estimates provided by it. For MHT, this in turn relies on the Million Women Study, which is a large observational study. There are other sources which indicate different results.</li>
-              <li> When using the modified Gail model, we also rely on these estimates. The Gail model is based on an American population and is older than other breast cancer risk models, so may not be as applicable to your situation.
-                  Also, we rely on the Lancet paper below [5]. This shows no variation by risk factors, but this is based solely on observational studies. We did not have access to the raw data itself.
-              </li>
-            </ul>
-
+          </Typography>
+          <Typography
+            component="ul"
+            color="primary"
+          >
+            <ListItem  sx={{ display: "list-item" }}> When using the CanRisk tool, we rely on the estimates provided by it. For MHT, this in turn relies on the Million Women Study, which is a large observational study. There are other sources which indicate different results.</ListItem>
+            <ListItem  sx={{ display: "list-item" }}> When using the modified Gail model, we also rely on these estimates. The Gail model is based on an American population and is older than other breast cancer risk models, so may not be as applicable to your situation.
+              Also, we rely on the Lancet paper below [5]. This shows no variation by risk factors, but this is based solely on observational studies. We did not have access to the raw data itself.</ListItem>
           </Typography>
           <br/>
           <Typography component="p" color="primary" > {boldText("Does this replace my doctor's advice?")} </Typography>

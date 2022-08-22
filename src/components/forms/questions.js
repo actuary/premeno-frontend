@@ -62,8 +62,8 @@ const questions = {
     question: "Have you had a hysterectomy, or do you have a Mirena coil (IUS) in situ?",
     label: "Have you had a hysterectomy, or do you have a Mirena coil (IUS) in situ?",
     choices: {
-      "e": "No",
-      "e+p": "Yes"
+      "e": "Yes",
+      "e+p": "No"
     }
   },
   age_at_menarche: {
