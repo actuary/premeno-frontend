@@ -1,63 +1,39 @@
-import { useState, useEffect } from "react"
-import {
-  BrowserRouter as Router,
-  Routes, Route
-} from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import {
-  createTheme,
-  ThemeProvider
-} from "@mui/material"
+import { ThemeProvider } from "@mui/material"
 
-import Navbar from "./components/common/Navbar"
-import Footer from "./components/common/Footer"
 import About from "./components/About"
 import Home from "./components/Home"
 import Questionnaire from "./components/Questionnaire"
 import MhtResults from "./components/MhtResults"
 import SymptomQuestionnaire from "./components/SymptomQuestionnaire"
 
-import { amber, teal } from "@mui/material/colors"
-
-const theme = createTheme({
-  status: {
-    danger: "#e53e3e",
-  },
-  palette: {
-    primary: {
-      main: teal[500],
-      contrastText: "#ffffff",
-    },
-    secondary: {
-      main: "#f9f6ee",
-    },
-    reset: {
-      main: amber[500],
-      contrastText: "#ffffff",
-    }
-  }
-})
+import Navbar from "./components/common/Navbar"
+import Disclaimer from "./components/common/Disclaimer"
+import Footer from "./components/common/Footer"
+import theme from "./components/common/theme"
 
 const App = () => {
-  const [formValues, setFormValues] = useState({})
-
-  useEffect(() => {
-    localStorage.setItem("formValues", JSON.stringify(formValues))
-  }, [formValues])
+  const Pages = [
+    {route: "/", Page: Home},
+    {route: "/about", Page: About},
+    {route: "/questionnaire", Page: Questionnaire},
+    {route: "/results", Page: MhtResults},
+    {route: "/symptoms", Page: SymptomQuestionnaire},
+  ]
 
   return (
     <ThemeProvider theme={theme}>
-      <Router>
+      <BrowserRouter>
         <Navbar />
+        <Disclaimer />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/questionnaire" element={<Questionnaire setValues={setFormValues}/>} />
-          <Route path="/results" element={<MhtResults values={formValues}/>} />
-          <Route path="/symptoms" element={<SymptomQuestionnaire/>} />
+          {Pages.map( ({ route, Page}) => 
+            <Route key={route} path={route} element={<Page />}/>) 
+          }
         </Routes>
         <Footer/>
-      </Router>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }

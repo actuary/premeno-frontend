@@ -7,10 +7,10 @@ import {
   Typography,
 } from "@mui/material"
 
-const Disclaimer = () => (
-  <Container maxWidth="md">
+const Disclaimer = ({ maxWidth="md" }) => (
+  <Container maxWidth={maxWidth}>
     <Paper
-      style={{padding: 5, border: "1px solid teal", "marginTop": 10, background: "#F5F5DC"}}
+      style={{padding: 5, border: "2px solid teal", "marginTop": 1, background: "#F5F5DC"}}
     >
       <Grid container alignItems="center">
         <Grid item xs={2}>

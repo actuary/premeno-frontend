@@ -11,7 +11,6 @@ import {
 } from "@mui/material"
 import { TabPanel, TabContext, TabList } from "@mui/lab"
 
-import Disclaimer from "./common/Disclaimer"
 import QuestionsAndAnswers from "./common/QuestionsAndAnswers"
 import DefinitionExplainer from "./risk/DefinitionExplainer"
 import RiskGraphicDisplay from "./risk/RiskGraphicDisplay"
@@ -71,43 +70,40 @@ const MhtResults = () => {
   const riskWithMHT = Math.min(risk.relative_risk * risk.baseline_risk, 1)
 
   return (
-    <>
-      <Disclaimer/>
-      <Container style={{padding: 5}}>
-        <TabContext value={value}>
-          <AppBar position="static">
-            <TabList
-              onChange={handleChange}
-              indicatorColor="secondary"
-              textColor="inherit"
-              variant="fullWidth"
-              aria-label="full width tabs example"
-            >
-              <Tab value="bc" label="Breast Cancer" />
-              <Tab value="frac" label="Fracture Risk" />
-              <Tab value="vte" label="VTE" />
-              <Tab value="cvd" label="CVD" />
-              <Tab value="vs" label="Symptoms" />
-            </TabList>
-          </AppBar>
-          <TabPanel id="results_bc" value="bc" index={0}>
-            <DefinitionExplainer riskText="being diagnosed with breast cancer"/>
-            <RiskTextDisplay
-              baseline={risk.baseline_risk}
-              total_risk={riskWithMHT}
-              years={5}
-            />
-            <RiskGraphicDisplay 
-              baselineRisk={risk.baseline_risk}
-              mhtRisk={riskWithMHT}
-              riskActionText="to get breast cancer"
-            />
-          </TabPanel>
-        </TabContext>
-        <ResultsDownloader baselineRisk={risk.baseline_risk} mhtRisk={riskWithMHT} />
-        <QuestionsAndAnswers qna={qna}/>
-      </Container>
-    </>
+    <Container style={{padding: 5}}>
+      <TabContext value={value}>
+        <AppBar position="static">
+          <TabList
+            onChange={handleChange}
+            indicatorColor="secondary"
+            textColor="inherit"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >
+            <Tab value="bc" label="Breast Cancer" />
+            <Tab value="frac" label="Fracture Risk" />
+            <Tab value="vte" label="VTE" />
+            <Tab value="cvd" label="CVD" />
+            <Tab value="vs" label="Symptoms" />
+          </TabList>
+        </AppBar>
+        <TabPanel id="results_bc" value="bc" index={0}>
+          <DefinitionExplainer riskText="being diagnosed with breast cancer"/>
+          <RiskTextDisplay
+            baseline={risk.baseline_risk}
+            total_risk={riskWithMHT}
+            years={5}
+          />
+          <RiskGraphicDisplay 
+            baselineRisk={risk.baseline_risk}
+            mhtRisk={riskWithMHT}
+            riskActionText="to get breast cancer"
+          />
+        </TabPanel>
+      </TabContext>
+      <ResultsDownloader baselineRisk={risk.baseline_risk} mhtRisk={riskWithMHT} />
+      <QuestionsAndAnswers qna={qna}/>
+    </Container>
   )
 }
 
