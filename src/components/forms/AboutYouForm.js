@@ -8,7 +8,7 @@ import DateFormControl from "./controls/DateFormControl"
 import NumberFormControl from "./controls/NumberFormControl"
 import RadioFormControl from "./controls/RadioFormControl"
 
-import { getAge, getLocalData } from "./utils"
+import { getAge, getLocalData } from "../common/utils"
 import questions from "./questions"
 
 const AboutYouForm = ({ nextStep }) => {

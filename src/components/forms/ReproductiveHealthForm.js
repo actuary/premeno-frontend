@@ -8,7 +8,7 @@ import SelectFormControl from "./controls/SelectFormControl"
 import NumberFormControl from "./controls/NumberFormControl"
 import CheckboxFormControl from "./controls/CheckboxFormControl"
 
-import { getLocalData } from "./utils"
+import { getLocalData } from "../common/utils"
 import questions from "./questions"
 
 const defaultValues = {

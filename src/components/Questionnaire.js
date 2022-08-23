@@ -8,32 +8,15 @@ import {
   Step,
   StepLabel,
   Button,
-  ThemeProvider, createTheme,
   Stack
 } from "@mui/material"
-import { teal, amber } from "@mui/material/colors"
 
-const theme = createTheme({
-  status: {
-    danger: "#e53e3e",
-  },
-  palette: {
-    primary: {
-      main: teal[500],
-    },
-    reset: {
-      main: amber[500],
-      contrastText: "#ffffff",
-    }
-  },
-})
+import AboutYouForm from "./forms/AboutYouForm"
+import ReproductiveHealthForm from "./forms/ReproductiveHealthForm"
+import BreastCancerRiskForm from "./forms/BreastCancerRiskForm"
+import Disclaimer from "./common/Disclaimer"
 
-import AboutYouForm from "./AboutYouForm"
-import ReproductiveHealthForm from "./ReproductiveHealthForm"
-import BreastCancerRiskForm from "./BreastCancerRiskForm"
-import Disclaimer from "../Disclaimer"
-
-import { getAge } from "./utils"
+import { getAge } from "./common/utils"
 
 const Questionnaire = () => {
   const steps = ["About you", "Reproductive health", "Breast cancer risk"]
@@ -63,7 +46,7 @@ const Questionnaire = () => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Disclaimer/>
       <Container maxWidth="md">
         <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
@@ -100,7 +83,7 @@ const Questionnaire = () => {
           </>
         </Paper>
       </Container>
-    </ThemeProvider>
+    </>
   )
 }
 

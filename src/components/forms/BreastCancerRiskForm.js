@@ -8,7 +8,7 @@ import SelectFormControl from "./controls/SelectFormControl"
 import NumberFormControl from "./controls/NumberFormControl"
 import FamilyHistory from "./FamilyHistory"
 
-import { getLocalData } from "./utils"
+import { getLocalData } from "../common/utils"
 import questions from "./questions"
 
 const BreastCancerRiskForm = ({ prevStep, nextStep }) => {

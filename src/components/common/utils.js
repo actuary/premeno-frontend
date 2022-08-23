@@ -27,3 +27,11 @@ export const getAge = (date) => {
 
   return age
 }
+
+export const boldText = (text) => (
+  <span style={{fontWeight: "bold"}}>{text}</span>
+)
+
+export const italicize = (text) => (
+  <span style={{fontStyle: "italic"}}>{text}</span>
+)

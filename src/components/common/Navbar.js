@@ -1,33 +1,27 @@
 import { useState, useLayoutEffect } from "react"
 
-import { Grid, IconButton, Drawer } from "@mui/material"
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
-import MenuIcon from "@mui/icons-material/Menu"
-import AssignmentIcon from "@mui/icons-material/Assignment"
-import InfoIcon from "@mui/icons-material/Info"
-import AnalyticsIcon from "@mui/icons-material/Analytics"
-import AppBar from "@mui/material/AppBar"
-import Toolbar from "@mui/material/Toolbar"
-import Typography from "@mui/material/Typography"
-import Container from "@mui/material/Container"
-import Button from "@mui/material/Button"
+import { 
+  List, 
+  ListItem, 
+  ListItemButton, 
+  ListItemIcon, 
+  ListItemText,
+  Grid, 
+  IconButton, 
+  Drawer,
+  Toolbar,
+  Typography, 
+  Container, 
+  Button,
+  AppBar
+} from "@mui/material"
+import { 
+  Menu, Assignment, Info, Analytics 
+} from "@mui/icons-material"
+
 import { Link } from "react-router-dom"
-import { createTheme } from "@mui/material/styles"
-import { ThemeProvider } from "@emotion/react"
-import { teal } from "@mui/material/colors"
 
-import { ReactComponent as LogoSmall } from "./images/alt_logo_small_circle.svg"
-
-const theme = createTheme({
-  status: {
-    danger: "#e53e3e",
-  },
-  palette: {
-    primary: {
-      main: teal[500],
-    }
-  },
-})
+import { ReactComponent as LogoSmall } from "../../images/alt_logo_small_circle.svg"
 
 const BigNavbar = ({ pages }) => (
   <Toolbar  disableGutters variant = "dense">
@@ -77,7 +71,7 @@ const SmallNavbar = ({ pages }) => {
           onClick: () => setDrawerOpen(true)
         }}
       >
-        <MenuIcon />
+        <Menu />
       </IconButton>
       <Drawer
         {...{
@@ -129,10 +123,10 @@ const SmallNavbar = ({ pages }) => {
 
 const Navbar = () => {
   const pages = [
-    { label: "About", route: "/about", Icon: InfoIcon},
-    { label: "Risk Questionnaire", route: "/questionnaire", Icon: AssignmentIcon},
-    { label: "Risk Assessment", route: "/results", Icon: AnalyticsIcon},
-    { label: "Symptom Questionnaire", route: "/symptoms", Icon: AssignmentIcon}
+    { label: "About", route: "/about", Icon: Info},
+    { label: "Risk Questionnaire", route: "/questionnaire", Icon: Assignment},
+    { label: "Risk Assessment", route: "/results", Icon: Analytics},
+    { label: "Symptom Questionnaire", route: "/symptoms", Icon: Assignment}
   ]
 
   const [bigScreen, setBigScreen] = useState(false)
@@ -145,13 +139,11 @@ const Navbar = () => {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppBar position="static">
-        <Container maxWidth="xl">
-          {bigScreen ? <BigNavbar pages={pages} /> : <SmallNavbar pages={pages} />}
-        </Container>
-      </AppBar>
-    </ThemeProvider>
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        {bigScreen ? <BigNavbar pages={pages} /> : <SmallNavbar pages={pages} />}
+      </Container>
+    </AppBar>
   )
 }
 export default Navbar
