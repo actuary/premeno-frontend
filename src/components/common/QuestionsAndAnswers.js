@@ -6,7 +6,7 @@ import {
 } from "@mui/material"
 
 const QuestionsAndAnswers = ({ qna }) => {
-  console.log(qna)
+  const naIfEmpty = (str) => (str === "" ? "N/A" : str)
   return (
     <Paper style={{padding: 5, border: "1px solid teal", marginTop: 10}}>
       {qna && Object.keys(qna).length > 0 ?
@@ -57,7 +57,7 @@ const QuestionsAndAnswers = ({ qna }) => {
                       component="p"
                       color="primary"
                     >
-                      {answer}
+                      {naIfEmpty(answer)}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -89,7 +89,7 @@ const QuestionsAndAnswers = ({ qna }) => {
                       component="p"
                       color="primary"
                     >
-                      {answer}
+                      {naIfEmpty(answer)}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -121,7 +121,7 @@ const QuestionsAndAnswers = ({ qna }) => {
                       component="p"
                       color="primary"
                     >
-                      {answer}
+                      {naIfEmpty(answer)}
                     </Typography>
                   </Grid>
                 </Grid>
