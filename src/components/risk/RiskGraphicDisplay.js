@@ -5,7 +5,7 @@ import { Woman } from "@mui/icons-material"
 import IconArray from "./IconArray"
 import IconExplainer from "./IconExplainer"
 
-const RiskGraphicDisplay = ({baselineRisk, mhtRisk}) => {
+const RiskGraphicDisplay = ({baselineRisk, mhtRisk, riskActionText}) => {
   const numberOfWomen = 1000
   const length = 25
   const width = 40
@@ -22,9 +22,10 @@ const RiskGraphicDisplay = ({baselineRisk, mhtRisk}) => {
       <Grid container align="center">
         <Grid item component={Card} xs={12} md={12}>
           <IconExplainer
-            no_risk={Math.round((1 - mhtRisk) * numberOfWomen)}
-            extra_risk={Math.round((mhtRisk - baselineRisk) * numberOfWomen)}
-            anyway_risk={Math.round(baselineRisk * numberOfWomen)}
+            noRisk={Math.round((1 - mhtRisk) * numberOfWomen)}
+            riskDueTo={Math.round((mhtRisk - baselineRisk) * numberOfWomen)}
+            riskWithOrWithout={Math.round(baselineRisk * numberOfWomen)}
+            riskActionText={riskActionText}
           />
         </Grid>
         <Grid item component={Card} xs={12} md={12}>

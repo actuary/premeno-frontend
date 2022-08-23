@@ -2,7 +2,7 @@ import { Typography, Grid, Card, CardContent } from "@mui/material"
 
 import { Woman } from "@mui/icons-material"
 
-const IconExplainer = ({ anyway_risk, extra_risk, no_risk }) => (
+const IconExplainer = ({ riskWithOrWithout, riskDueTo, noRisk, riskActionText }) => (
   <Grid container align="center" spacing={1}>
     <Grid item component={Card} xs={12} md={4}>
       <CardContent>
@@ -13,8 +13,7 @@ const IconExplainer = ({ anyway_risk, extra_risk, no_risk }) => (
           color="teal"
           fontFamily="monospace"
         >
-          {no_risk} are likely not to get breast cancer whether they
-          used menopausal hormone therapy or not
+          {noRisk} are likely NOT to {riskActionText} whether they used MHT or not
         </Typography>
       </CardContent>
     </Grid>
@@ -27,8 +26,7 @@ const IconExplainer = ({ anyway_risk, extra_risk, no_risk }) => (
           color="black"
           fontFamily="monospace"
         >
-          {anyway_risk} would have likely gotten breast cancer
-          whether they used menopausal hormone therapy or not
+          {riskWithOrWithout} are likely {riskActionText} whether they used MHT or not
         </Typography>
       </CardContent>
     </Grid>
@@ -41,8 +39,7 @@ const IconExplainer = ({ anyway_risk, extra_risk, no_risk }) => (
           color="red"
           fontFamily="monospace"
         >
-          {extra_risk} more are likely to get breast cancer
-          due to menopausal hormone therapy who wouldn&apos;t have otherwise
+          {riskDueTo} more are likely {riskActionText} due to MHT who wouldn&apos;t have otherwise
         </Typography>
       </CardContent>
     </Grid>
