@@ -8,18 +8,18 @@ import SelectFormControl from "./controls/SelectFormControl"
 import NumberFormControl from "./controls/NumberFormControl"
 import FamilyHistory from "./FamilyHistory"
 
-import { getLocalData } from "../common/utils"
+import { getSavedData, setSavedData } from "../common/utils"
 import questions from "./questions"
 
 const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
   const { handleSubmit, control, getValues, watch } = useForm({
     mode: "all",
-    defaultValues: getLocalData("breast_cancer_risk")
+    defaultValues: getSavedData("breast_cancer_risk")
   })
 
   const onSubmit = data => {
     console.log(data)
-    localStorage.setItem("breast_cancer_risk", JSON.stringify(data))
+    setSavedData("breast_cancer_risk", data)
     nextStep()
   }
 
@@ -72,16 +72,16 @@ const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
       {showBiopsy &&
         <>
           <Typography component="h6" variant="h6" align="left" color="teal">
-            {questions["hyperplasia"]["question"]}
+            {questions["biopsies_with_hyperplasia"]["question"]}
           </Typography>
           <SelectFormControl
-            key="hyperplasia"
-            name="hyperplasia"
+            key="biopsies_with_hyperplasia"
+            name="biopsies_with_hyperplasia"
             control={control}
-            label={questions["hyperplasia"]["question"]}
+            label={questions["biopsies_with_hyperplasia"]["question"]}
             choices = {[
-              {value: "0", label: questions["hyperplasia"]["choices"]["0"]},
-              {value: "1", label: questions["hyperplasia"]["choices"]["1"]}
+              {value: "0", label: questions["biopsies_with_hyperplasia"]["choices"]["0"]},
+              {value: "1", label: questions["biopsies_with_hyperplasia"]["choices"]["1"]}
             ]}
             rules={{
               validate: {

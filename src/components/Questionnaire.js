@@ -33,7 +33,6 @@ const Questionnaire = () => {
     if (index == 0) {
       return <AboutYouForm nextStep={nextStep} />
     } else if (index == 1) {
-      console.log(JSON.parse(localStorage.getItem("about_you")).date_of_birth)
       const age = getAge(JSON.parse(localStorage.getItem("about_you")).date_of_birth)
       return <ReproductiveHealthForm prevStep={prevStep} nextStep={nextStep} age={age} />
     } else if (index == 2) {

@@ -12,21 +12,21 @@ export const getAuthToken = () => {
       .post(
         `${process.env.REACT_APP_API_URL}/auth-token/`, 
         data, 
-        { "Content-Type": "application/json" }
-      )
+        { "Content-Type": "application/json" })
+      .then(response => response.data.token)
+      .catch(error => {
+        console.log(`Error getting risk calculation ${error.reponse}`)
+        throw error
+      })
   )
 }
 
 export const getRiskCalculation = (data) => (
-  getAuthToken()
-    .then(response => {
-      const payload = {
-        headers: {"Authorization": "Token " + response.data.token,
-          "Content-Type": "application/json"},
-        params: data
-      }
-      return axios.get(process.env.REACT_APP_API_URL + "/api/risk", payload)
-    })
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/api/risk/`, 
+      data
+    )
     .then(response => response.data)
     .catch(error => {
       console.log(`Error getting risk calculation ${error.reponse}`)

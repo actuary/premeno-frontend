@@ -8,34 +8,33 @@ import SelectFormControl from "./controls/SelectFormControl"
 import NumberFormControl from "./controls/NumberFormControl"
 import CheckboxFormControl from "./controls/CheckboxFormControl"
 
-import { getLocalData } from "../common/utils"
+import { getSavedData, setSavedData } from "../common/utils"
 import questions from "./questions"
 
 const defaultValues = {
-  no_children: true,
+  nulliparous: true,
   age_at_menarche: "",
   age_at_first_child: ""
 }
 const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
 
-  const { handleSubmit, control, formState, getValues, watch } = useForm({
+  const { handleSubmit, control, getValues, watch } = useForm({
     mode: "all",
-    defaultValues: getLocalData("reproductive_health", defaultValues)
+    defaultValues: getSavedData("reproductive_health", defaultValues)
   })
 
   const onSubmit = data => {
     console.log(data)
-    localStorage.setItem("reproductive_health", JSON.stringify(data))
+    setSavedData("reproductive_health", data)
     nextStep()
   }
 
   const [ disableAgeAtFirstChild, setDisableAgeAtFirstChild ] = useState(false)
-  const watchNoChildCheckbox = watch("no_children")
+  const watchNulliparous = watch("nulliparous")
 
   useEffect( () => {
-    const no_children = getValues("no_children")
-    setDisableAgeAtFirstChild(no_children)
-  }, [watchNoChildCheckbox])
+    setDisableAgeAtFirstChild(getValues("nulliparous"))
+  }, [watchNulliparous])
 
   return (
     <form id="reproductive_health" onSubmit={handleSubmit(onSubmit)}>
@@ -100,14 +99,13 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
         </Grid>
         <Grid item xs={4}>
           <CheckboxFormControl
-            key="no_children"
-            name="no_children"
+            key="nulliparous"
+            name="nulliparous"
             control={control}
-            label={questions["no_children"]["label"]}
+            label={questions["nulliparous"]["label"]}
             rules={{
               validate: () => {
                 //to ensure next updates on change
-                console.log("formState.isValid", formState.isValid)
                 return true
               }
             }}
@@ -115,16 +113,16 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
         </Grid>
       </Grid>
       <Typography component="h6" variant="h6" align="left" color="teal">
-        {questions["oral_contra"]["question"]}
+        {questions["oral_contraception_use"]["question"]}
       </Typography>
       <SelectFormControl
-        key="oral_contra"
-        name="oral_contra"
+        key="oral_contraception_use"
+        name="oral_contraception_use"
         control={control}
-        label={questions["oral_contra"]["label"]}
+        label={questions["oral_contraception_use"]["label"]}
         choices = {[
-          {value: "n", label: questions["oral_contra"]["choices"]["n"]},
-          {value: "y", label:questions["oral_contra"]["choices"]["y"]}
+          {value: "n", label: questions["oral_contraception_use"]["choices"]["n"]},
+          {value: "y", label:questions["oral_contraception_use"]["choices"]["y"]}
         ]}
         rules= {{required: "Required"}}
       />

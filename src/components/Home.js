@@ -39,7 +39,7 @@ const Home = () => (
         component="p"
         color="primary"
       >
-        We aim to take a personalised approach to communicating how MHT. This means we
+        We aim to take a personalised approach to communicating the risks and benefits of MHT. This means we
         will ask you to answer some questions about yourself. We do not store these details,
         we throw them away as soon as we finish calculating your results.
       </Typography>

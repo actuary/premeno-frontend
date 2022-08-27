@@ -9,21 +9,25 @@ import {
 const CheckboxFormControl = ({ name, control, label, rules }) => {
 
   return (
-    <Controller
-      name={name}
-      control={control}
-      rules={rules}
-      defaultChecked={true} 
-      render={({ field }) => (
-        <FormControl fullWidth margin="normal">
-          <FormControlLabel
-            control={
-              <Checkbox defaultChecked={true} checked={field.value}/>
-            }
-            label={label} />
-        </FormControl>
-      )}
-    />
+    <FormControl fullWidth margin="normal">
+      <FormControlLabel
+        label={label} 
+        control={
+          <Controller
+            name={name}
+            control={control}
+            rules={rules}
+            defaultValue={true}
+            render={({ field }) => (
+              <Checkbox 
+                checked={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+        }
+      />
+    </FormControl>
   )
 }
 

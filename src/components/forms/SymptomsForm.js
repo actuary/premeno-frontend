@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { Grid, Typography, Button, Box } from "@mui/material"
 
-import { getLocalData } from "../common/utils"
+import { getSavedData, setSavedData } from "../common/utils"
 import { getSymptomPDF } from "../common/api"
 import SymptomSlider from "./controls/SymptomSlider"
 
@@ -26,7 +26,7 @@ const SymptomQuestion = ({ control, title, name }) => (
 
 const SymptomsForm = ({ questions, ratings}) => {
   const { handleSubmit, control } = useForm({
-    defaultValues: getLocalData("symptoms")
+    defaultValues: getSavedData("symptoms")
   })
   
   const augmentWithRatings = data => ( 
@@ -41,7 +41,7 @@ const SymptomsForm = ({ questions, ratings}) => {
   const onSubmit = data => {
     const request_data = {symptoms: augmentWithRatings(data)}
     getSymptomPDF(request_data)
-    localStorage.setItem("symptoms", JSON.stringify(data))
+    setSavedData("symptoms", JSON.stringify(data))
   }
 
   return (

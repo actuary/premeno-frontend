@@ -45,7 +45,7 @@ const questions = {
       uni: "University"
     }
   },
-  alcohol: {
+  alcohol_use: {
     question: "How many standard units of alcohol do you consume a week on average?",
     label: "How many standard units of alcohol do you consume a week on average?",
   },
@@ -74,11 +74,11 @@ const questions = {
     question: "What age did you have your first child?",
     label: "What age did you have your first child?"
   },
-  no_children: {
+  nulliparous: {
     question: "I have not had children",
     label: "I have not had children"
   },
-  oral_contra: {
+  oral_contraception_use: {
     question: "Have you ever used oral contraception?",
     label: "Have you ever used oral contraception?",
     choices: {
@@ -98,7 +98,7 @@ const questions = {
     question: "How many breast biopsies have you had?",
     label: "How many breast biopsies have you had?"
   },
-  hyperplasia: {
+  biopsies_with_hyperplasia: {
     question: "Have you had a biopsy with atypical hyperplasia?",
     label: "Have you had a biopsy with atypical hyperplasia?",
     choices: { 

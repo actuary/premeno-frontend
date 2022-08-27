@@ -8,18 +8,18 @@ import DateFormControl from "./controls/DateFormControl"
 import NumberFormControl from "./controls/NumberFormControl"
 import RadioFormControl from "./controls/RadioFormControl"
 
-import { getAge, getLocalData } from "../common/utils"
+import { getAge, getSavedData, setSavedData } from "../common/utils"
 import questions from "./questions"
 
 const AboutYouForm = ({ nextStep }) => {
   const { handleSubmit, control, formState, watch, getValues } = useForm({
     mode: "all",
-    defaultValues: getLocalData("about_you")
+    defaultValues: getSavedData("about_you")
   })
 
   const onSubmit = data => {
     console.log(data)
-    localStorage.setItem("about_you", JSON.stringify(data))
+    setSavedData("about_you", data)
     nextStep()
   }
 
@@ -186,13 +186,13 @@ const AboutYouForm = ({ nextStep }) => {
         rules= {{required: "Required"}}
       />
       <Typography component="h6" variant="h6" align="left" color="teal">
-        {questions["alcohol"]["question"]}
+        {questions["alcohol_use"]["question"]}
       </Typography>
       <NumberFormControl
-        key="alcohol"
-        name="alcohol"
+        key="alcohol_use"
+        name="alcohol_use"
         control={control}
-        label={questions["alcohol"]["label"]}
+        label={questions["alcohol_use"]["label"]}
         rules={{
           required: "Required",
           min: {value: 0, message: "Invalid units"},
