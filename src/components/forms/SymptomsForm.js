@@ -41,7 +41,7 @@ const SymptomsForm = ({ questions, ratings}) => {
   const onSubmit = data => {
     const request_data = {symptoms: augmentWithRatings(data)}
     getSymptomPDF(request_data)
-    setSavedData("symptoms", JSON.stringify(data))
+    setSavedData("symptoms", data)
   }
 
   return (
