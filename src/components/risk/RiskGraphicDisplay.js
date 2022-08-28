@@ -26,6 +26,7 @@ const RiskGraphicDisplay = ({baselineRisk, mhtRisk, riskActionText}) => {
             riskDueTo={Math.round((mhtRisk - baselineRisk) * numberOfWomen)}
             riskWithOrWithout={Math.round(baselineRisk * numberOfWomen)}
             riskActionText={riskActionText}
+            secondaryColour={mhtRisk - baselineRisk < 0 ? "purple": "red"}
           />
         </Grid>
         <Grid item component={Card} xs={12} md={12}>
@@ -33,8 +34,9 @@ const RiskGraphicDisplay = ({baselineRisk, mhtRisk, riskActionText}) => {
             Icon={Woman}
             length={length}
             width={width}
-            black={baselineRisk}
-            red={mhtRisk}
+            black={mhtRisk - baselineRisk < 0 ? mhtRisk: baselineRisk}
+            red={mhtRisk - baselineRisk < 0 ? baselineRisk: mhtRisk}
+            secondaryColour={mhtRisk - baselineRisk < 0 ? "purple": "red"}
           />
         </Grid>
       </Grid>

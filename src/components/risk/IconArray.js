@@ -9,7 +9,7 @@ const ColouredIconCell = ({ Icon, color }) => {
   )
 }
 
-const IconArray = ({ Icon, length, width, black, red }) => {
+const IconArray = ({ Icon, length, width, black, red, secondaryColour="red" }) => {
   const [iconArrayDim, setIconArrayDim] = useState({
     length: length,
     width: width
@@ -30,7 +30,7 @@ const IconArray = ({ Icon, length, width, black, red }) => {
   const getColour = (idx, black, red) => {
     return (idx < Math.ceil(black * total) ?
       "black" :
-      (idx < Math.ceil(red * total) ? "red" : "teal"))
+      (idx < Math.ceil(red * total) ? secondaryColour : "teal"))
   }
   console.log(iconArrayDim)
 

@@ -26,8 +26,9 @@ const MhtResults = () => {
   const [spinner, setSpinner] = useState(true)
 
   const formData = retrieveFormData()
+  const mht_type = formData.mht
   const qna = makeQuestionsAndAnswers(formData, questions)
-  console.log(qna)
+  console.log(formData)
   useEffect(() => {
     getRiskCalculation(formData)
       .then(response => {
@@ -67,8 +68,6 @@ const MhtResults = () => {
     )
   }
 
-  const riskWithMHT = Math.min(risk.relative_risk * risk.baseline_risk, 1)
-
   return (
     <Container style={{padding: 5}}>
       <TabContext value={value}>
@@ -90,18 +89,18 @@ const MhtResults = () => {
         <TabPanel id="results_bc" value="bc" index={0}>
           <DefinitionExplainer riskText="being diagnosed with breast cancer"/>
           <RiskTextDisplay
-            baseline={risk.baseline_risk}
-            total_risk={riskWithMHT}
+            baseline={risk.breast_cancer["none"]}
+            total_risk={risk.breast_cancer[mht_type]}
             years={5}
           />
           <RiskGraphicDisplay 
-            baselineRisk={risk.baseline_risk}
-            mhtRisk={riskWithMHT}
+            baselineRisk={risk.breast_cancer["none"]}
+            mhtRisk={risk.breast_cancer[mht_type]}
             riskActionText="to get breast cancer"
           />
         </TabPanel>
       </TabContext>
-      <ResultsDownloader baselineRisk={risk.baseline_risk} mhtRisk={riskWithMHT} />
+      <ResultsDownloader baselineRisk={risk.breast_cancer["none"]} mhtRisk={risk.breast_cancer[mht_type]} />
       <QuestionsAndAnswers qna={qna}/>
     </Container>
   )

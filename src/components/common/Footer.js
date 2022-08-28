@@ -1,9 +1,19 @@
-import { teal } from "@mui/material/colors"
+import { useTheme } from "@mui/material/styles"
 
-const Footer = () => (
-  <footer style={{color: "white", background: teal[500], height: "150px"}}>
-    <i>Mascot: The MHT Risk Assessment Tool</i>
-  </footer>
-)
+const Footer = () => {
+  const theme = useTheme()
+  return (
+    <footer 
+      style={{
+        color: theme.palette.primary.contrastText, 
+        background: theme.palette.primary.main, 
+        height: "200px",
+        bottom: 0, width: "100%"
+      }} 
+    > 
+      <i>Mascot: The MHT Risk Assessment Tool</i>
+    </footer>
+  )
+}
 
 export default Footer

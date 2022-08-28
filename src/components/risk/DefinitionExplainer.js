@@ -6,17 +6,13 @@ const DefinitionExplainer = ({ riskText }) => (
       component="p"
       color="primary"
     >
-      <strong>Background risk:</strong> This shows the estimated chance of
-      {riskText} over the next 5 years, without the
-      use of MHT.
+      <strong>Background risk:</strong> This shows the estimated chance of {riskText} over the next 5 years, without the use of MHT.
     </Typography>
     <Typography
       component="p"
       color="primary"
     >
-      <strong>Risk with MHT use:</strong> This shows the estimated chance of
-      {riskText} over the next 5 years, if you decide
-      to take MHT.
+      <strong>Risk with MHT use:</strong> This shows the estimated chance of {riskText} over the next 5 years, if you decide to take MHT.
     </Typography>
     <br />
     <Typography
@@ -25,7 +21,8 @@ const DefinitionExplainer = ({ riskText }) => (
     >
       <strong>Please note</strong> that these estimates are only a guide and should
       be discussed with your doctor. These estimates may not be accurate if you have 
-      certain genes or heritage. Please see the <a href="/about">about</a> page 
+      certain genes or heritage. They also might differ depending on the type of MHT you use, e.g. pills vs patches. 
+      Please see the <a href="/about">about</a> page 
       for details on how these estimates were calculated.
     </Typography>
   </Paper>
