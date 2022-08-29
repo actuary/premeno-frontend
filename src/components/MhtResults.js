@@ -46,9 +46,7 @@ const MhtResults = () => {
   if (Object.keys(risk).length === 0) {
     return (
       <Container>
-        <Paper
-          style={{padding: 20, border: "1px solid teal", "margin": 10}}
-        >
+        <Paper variant="main">
           { spinner ?
             <LinearProgress color="primary" sx={{height: 20}}/> :
             <Stack justify="center" spacing={2}>
@@ -58,7 +56,7 @@ const MhtResults = () => {
               >
                 No results available.
               </Typography>
-              <Button href="/questionnaire" style={{border: "1px solid teal"}}>
+              <Button href="/questionnaire" variant="empty">
                 Take questionnaire again
               </Button>
             </Stack>

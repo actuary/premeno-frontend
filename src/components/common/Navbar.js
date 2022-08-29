@@ -47,7 +47,7 @@ const BigNavbar = ({ pages }) => (
       {pages.map((page) => (
         <Link key={page.label} style={{padding: 5, textDecoration: "none"}} to={page.route}>
           <Button
-            sx={{ my: 2, color: "white", display: "block" }}
+            sx={{ my: 2, color: "primary.contrastText", display: "block" }}
           >
             {page.label}
           </Button>
@@ -84,10 +84,10 @@ const SmallNavbar = ({ pages }) => {
           {pages.map((page) => (
             <ListItem key={page.label} disablePadding>
               <Link key={page.label} style={{textDecoration: "none"}} to={page.route}>
-                <ListItemButton sx={{ color: "teal", display: "block" }}>
+                <ListItemButton variant="empty">
                   <Grid container alignItems="center">
                     <Grid item>
-                      <ListItemIcon><page.Icon color="teal" fontSize="small"/></ListItemIcon>
+                      <ListItemIcon><page.Icon fontSize="small"/></ListItemIcon>
                     </Grid>
                     <Grid item>
                       <ListItemText primary={page.label} />

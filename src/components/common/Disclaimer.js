@@ -9,9 +9,7 @@ import {
 
 const Disclaimer = ({ maxWidth="md" }) => (
   <Container maxWidth={maxWidth}>
-    <Paper
-      style={{padding: 5, border: "2px solid teal", "marginTop": 1, background: "#F5F5DC"}}
-    >
+    <Paper variant="warning">
       <Grid container alignItems="center">
         <Grid item xs={2}>
           <WarningAmberIcon color="error" fontSize="large"/> 

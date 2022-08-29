@@ -11,11 +11,11 @@ const RiskGraphicDisplay = ({baselineRisk, mhtRisk, riskActionText}) => {
   const width = 40
 
   return (
-    <Paper style={{padding: 5, border: "1px solid teal", marginTop: 10}}>
+    <Paper variant="main">
       <Typography
         variant="h6"
         component="p"
-        color="teal"
+        color="primary"
       >
         For {numberOfWomen} women with your attributes over 5 years
       </Typography>

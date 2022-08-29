@@ -9,7 +9,7 @@ const SymptomQuestion = ({ control, title, name }) => (
   <>
     <Grid container alignItems="center">
       <Grid item xs={12} md={6}>
-        <Typography component="h6" variant="h6" align="left" color="teal">
+        <Typography component="h6" variant="h6" align="left" color="primary">
           {title}
         </Typography>
       </Grid>

@@ -38,7 +38,7 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
 
   return (
     <form id="reproductive_health" onSubmit={handleSubmit(onSubmit)}>
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["mht"]["question"]}
       </Typography>
       <SelectFormControl
@@ -52,7 +52,7 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
         ]}
         rules= {{required: "Required"}}
       />
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["age_at_menarche"]["question"]}
       </Typography>
       <NumberFormControl
@@ -66,7 +66,7 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
           max: {value: age, message: "Must have had period before current age."}
         }}
       />
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["age_at_first_child"]["question"]}
       </Typography>
       <Grid container spacing= {{xs: 2 }} alignItems="center">
@@ -112,7 +112,7 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
           />
         </Grid>
       </Grid>
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["oral_contraception_use"]["question"]}
       </Typography>
       <SelectFormControl

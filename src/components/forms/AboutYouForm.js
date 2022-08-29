@@ -12,6 +12,7 @@ import { getAge, getSavedData, setSavedData } from "../common/utils"
 import questions from "./questions"
 
 const AboutYouForm = ({ nextStep }) => {
+
   const { handleSubmit, control, formState, watch, getValues } = useForm({
     mode: "all",
     defaultValues: getSavedData("about_you")
@@ -37,7 +38,7 @@ const AboutYouForm = ({ nextStep }) => {
 
   return (
     <form id="about" onSubmit={handleSubmit(onSubmit)}>
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["date_of_birth"]["question"]}
       </Typography>
       <DateFormControl
@@ -47,7 +48,7 @@ const AboutYouForm = ({ nextStep }) => {
         label={questions["date_of_birth"]["label"]}
         rules={{required: "Required.", validate: isValidAge }}
       />
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["height"]["question"]}
       </Typography>
       <Grid container spacing= {{xs: 2 }} alignItems="center">
@@ -124,7 +125,7 @@ const AboutYouForm = ({ nextStep }) => {
           />
         </Grid>
       </Grid>
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["weight"]["question"]}
       </Typography>
       <Grid container spacing= {{xs: 2 }} alignItems="center">
@@ -155,7 +156,7 @@ const AboutYouForm = ({ nextStep }) => {
           />
         </Grid>
       </Grid>
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["ethnic_group"]["question"]}
       </Typography>
       <SelectFormControl
@@ -169,7 +170,7 @@ const AboutYouForm = ({ nextStep }) => {
         ]}
         rules= {{required: "Required"}}
       />
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["education"]["question"]}
       </Typography>
       <SelectFormControl
@@ -185,7 +186,7 @@ const AboutYouForm = ({ nextStep }) => {
         ]}
         rules= {{required: "Required"}}
       />
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["alcohol_use"]["question"]}
       </Typography>
       <NumberFormControl
@@ -199,7 +200,7 @@ const AboutYouForm = ({ nextStep }) => {
           max: {value: 100, message: "Enter up to a max of 100 units"}
         }}
       />
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["smoking"]["question"]}
       </Typography>
       <SelectFormControl

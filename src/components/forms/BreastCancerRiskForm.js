@@ -32,7 +32,7 @@ const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
 
   return (
     <form id="breast_cancer_risk" onSubmit={handleSubmit(onSubmit)}>
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["biopsy"]["question"]}
       </Typography>
       <SelectFormControl
@@ -48,7 +48,7 @@ const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
       />
       {showBiopsy && (
         <>
-          <Typography component="h6" variant="h6" align="left" color="teal">
+          <Typography component="h6" variant="h6" align="left" color="primary">
             {questions["number_of_biopsies"]["question"]}
           </Typography>
           <NumberFormControl
@@ -71,7 +71,7 @@ const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
       }
       {showBiopsy &&
         <>
-          <Typography component="h6" variant="h6" align="left" color="teal">
+          <Typography component="h6" variant="h6" align="left" color="primary">
             {questions["biopsies_with_hyperplasia"]["question"]}
           </Typography>
           <SelectFormControl

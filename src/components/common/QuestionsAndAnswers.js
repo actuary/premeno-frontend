@@ -8,7 +8,7 @@ import {
 const QuestionsAndAnswers = ({ qna }) => {
   const naIfEmpty = (str) => (str === "" ? "N/A" : str)
   return (
-    <Paper style={{padding: 5, border: "1px solid teal", marginTop: 10}}>
+    <Paper variant="main">
       {qna && Object.keys(qna).length > 0 ?
         <>
           <Grid container>

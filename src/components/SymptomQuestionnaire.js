@@ -37,7 +37,7 @@ const symptomRatings = {
 
 const SymptomQuestionnaire = () => (
   <Container maxWidth="md">
-    <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
+    <Paper variant="main">
       <Typography
         component="p"
         color="primary"
@@ -64,8 +64,8 @@ const SymptomQuestionnaire = () => (
         [1] {italicize("Greene. (2008). Constructing a standard climacteric scale. Maturitas, 61(1), 78–84. https://doi.org/10.1016/j.maturitas.2008.09.011")}
       </Typography>
     </Paper>
-    <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
-      <Typography component="h6" variant="h6" align="center" color="teal">
+    <Paper variant="main">
+      <Typography component="h6" variant="h6" align="center" color="primary">
         Please indicate the extent to which you are bothered at the moment by any of 
         these symptoms by dragging the slider to the appropriate score.
       </Typography>

@@ -45,8 +45,8 @@ const Questionnaire = () => {
 
   return (
     <Container maxWidth="md">
-      <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
-        <Typography component="h1" variant="h4" align="center" color="teal">
+      <Paper variant="main">
+        <Typography component="h1" variant="h4" align="center" color="primary">
           MHT Risk Questionnaire
         </Typography>
         <Stepper activeStep={step} style={{marginTop: "10px", marginBottom: "10px"}}>

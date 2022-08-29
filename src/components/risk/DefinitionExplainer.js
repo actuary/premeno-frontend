@@ -1,7 +1,7 @@
 import { Paper, Typography, } from "@mui/material"
 
 const DefinitionExplainer = ({ riskText }) => (
-  <Paper style={{padding: 5, border: "1px solid teal", "marginTop": 10}}>
+  <Paper variant="main">
     <Typography
       component="p"
       color="primary"

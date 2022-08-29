@@ -7,7 +7,6 @@ import NumberFormControl from "./controls/NumberFormControl"
 import questions from "./questions"
 
 const FamilyHistory = ( { getValues, watch, control }) => {
-
   const [ showMother, setShowMother ] = useState(false)
   const watchShowMother = watch("mother_has_cancer")
 
@@ -25,7 +24,7 @@ const FamilyHistory = ( { getValues, watch, control }) => {
 
   return (
     <>
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["mother_has_cancer"]["question"]}
       </Typography>
       <SelectFormControl
@@ -58,7 +57,7 @@ const FamilyHistory = ( { getValues, watch, control }) => {
         /> :
         <></>
       }
-      <Typography component="h6" variant="h6" align="left" color="teal">
+      <Typography component="h6" variant="h6" align="left" color="primary">
         {questions["number_of_sisters"]["question"]}
       </Typography>
       <NumberFormControl
