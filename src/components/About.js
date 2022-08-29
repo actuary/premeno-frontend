@@ -172,8 +172,8 @@ const About = () => (
             fullWidth
           >
             <Grid container alignItems="center">
-              <Assignment color="secondary" fontSize="large"/>
-              <Typography color="primary.contrastText" align="center">
+              <Assignment fontSize="large"/>
+              <Typography align="center">
                 Assess my risk
               </Typography>
             </Grid>
@@ -187,8 +187,8 @@ const About = () => (
             fullWidth
           >
             <Grid container alignItems="center">
-              <Psychology color="secondary" fontSize="large"/>
-              <Typography color="primary.contrastText" align="center">
+              <Psychology fontSize="large"/>
+              <Typography align="center">
                 Assess my symptoms
               </Typography>
             </Grid>

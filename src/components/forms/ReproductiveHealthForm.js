@@ -127,13 +127,12 @@ const ReproductiveHealthForm = ({ prevStep, nextStep, age }) => {
         rules= {{required: "Required"}}
       />
       <Box display="flex" justifyContent="flex-end">
-        <Button onClick={prevStep}>
+        <Button variant="empty" onClick={prevStep}>
           Back
         </Button>
         <Button
           form="reproductive_health"
-          variant="contained"
-          color="primary"
+          variant="full"
           type="submit"
         >
           Next

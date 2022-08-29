@@ -51,7 +51,10 @@ const theme = createTheme({
             padding: 5, 
             border:`1px solid ${mainTheme.palette.primary.main}`, 
             marginTop: 10, 
-            textTransform: "none"
+            "&:hover": {
+              backgroundColor: mainTheme.palette.primary.contrastText,
+              color: mainTheme.palette.primary.main,
+            },
           }
         },
         {
@@ -62,13 +65,13 @@ const theme = createTheme({
             padding: 5, 
             border:`1px solid ${mainTheme.palette.primary.main}`, 
             marginTop: 10, 
+            "&:hover": {
+              backgroundColor: mainTheme.palette.primary.main,
+              color: mainTheme.palette.primary.contrastText,
+            },
           }
         }
       ],
-      styleOverrides: {
-        root: {
-        },
-      },
     },
     MuiPaper: {
       variants: [

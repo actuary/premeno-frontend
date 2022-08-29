@@ -218,8 +218,7 @@ const AboutYouForm = ({ nextStep }) => {
       <Box display="flex" justifyContent="flex-end">
         <Button
           form="about"
-          variant="contained"
-          color="primary"
+          variant="full"
           disabled={false && !formState.isValid}
           type="submit"
         >

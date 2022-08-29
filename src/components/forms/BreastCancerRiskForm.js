@@ -96,13 +96,12 @@ const BreastCancerRiskForm = ({ prevStep, nextStep }) => {
       }
       <FamilyHistory control={control} getValues={getValues} watch={watch}/>
       <Box display="flex" justifyContent="flex-end">
-        <Button onClick={prevStep}>
+        <Button variant="empty" onClick={prevStep}>
           Back
         </Button>
         <Button
           form="breast_cancer_risk"
-          variant="contained"
-          color="primary"
+          variant="full"
           type="submit"
         >
           Next

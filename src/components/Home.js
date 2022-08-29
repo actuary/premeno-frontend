@@ -59,12 +59,13 @@ const Home = () => {
           <Grid item xs={4}>
             <Button
               variant="full"
+              href="/questionnaire"
               style={{height: "90%"}}
               fullWidth
             >
               <Grid container alignItems="center">
-                <AssignmentIcon color="secondary" fontSize="large"/>
-                <Typography color="primary.contrastText" align="center">
+                <AssignmentIcon fontSize="large"/>
+                <Typography align="center">
                   Assess my risk
                 </Typography>
               </Grid>
@@ -78,8 +79,8 @@ const Home = () => {
               fullWidth
             >
               <Grid container alignItems="center">
-                <PsychologyIcon color="secondary" fontSize="large"/>
-                <Typography color="primary.contrastText" align="center">
+                <PsychologyIcon fontSize="large"/>
+                <Typography align="center">
                   Assess my symptoms
                 </Typography>
               </Grid>

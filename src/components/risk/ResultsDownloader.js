@@ -27,7 +27,7 @@ const ResultsDownloader = ({ baselineRisk, mhtRisk }) => {
   return (
     <Paper variant="main">
       <Stack justify="center" spacing={2}>
-        <Button variant="contained" color="primary" onClick={downloadPDF}>
+        <Button variant="full" color="primary" onClick={downloadPDF}>
           Download results PDF
         </Button>
         <Button href="/questionnaire" variant="empty">

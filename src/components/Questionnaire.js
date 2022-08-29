@@ -62,10 +62,10 @@ const Questionnaire = () => {
               <Typography variant="h5">
                 Thank you for completing the questionnaire.
               </Typography>
-              <Button href="/results" variant="contained" color="primary">
+              <Button href="/results" variant="full">
                 View results
               </Button>
-              <Button onClick={prevStep}>
+              <Button variant="empty" onClick={prevStep}>
                 Back
               </Button>
             </Stack>

@@ -56,12 +56,7 @@ const SymptomsForm = ({ questions, ratings}) => {
       ))
       }
       <Box display="flex" justifyContent="flex-end">
-        <Button
-          form="symptoms"
-          variant="contained"
-          color="primary"
-          type="submit"
-        >
+        <Button form="symptoms" variant="full" type="submit" fullWidth>
           Submit
         </Button>
       </Box>
