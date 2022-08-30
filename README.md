@@ -13,3 +13,12 @@ decision making between a doctor and their patient.
 This is the repository from the backend of the Mascot app. The backend, and further information, can be found
 [here](https://github.com/actuary/premeno-backend).
 
+### Folder structure
+This project was initialised using create-react-app. Work done for this project consists of all files beneath the src/ directory.
+- components/ - contains the top level pages of the app (About, Home, etc.)
+    - common/ - contains components and utility functions used throughout the project
+    - forms/ - contains forms and form controls used throughout the project
+    - risk/ - contains components relating to the display/communication of risk
+- images/ - Mascot logs produced for this project
+- App.js - Top level container
+- index.js - Entrypoint
