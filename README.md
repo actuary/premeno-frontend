@@ -10,7 +10,7 @@ hormone replacement therapy (HRT). It's aimed at women who are experiencing meno
 their options. It is not intended to replace the advice of a doctor, it is instead intended to facilitate shared
 decision making between a doctor and their patient.
 
-This is the repository from the backend of the Mascot app. The backend, and further information, can be found
+This is the repository from the frontend of the Mascot app. The backend, and further information, can be found
 [here](https://github.com/actuary/premeno-backend).
 
 ### Folder structure
